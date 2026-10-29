@@ -7,6 +7,14 @@
   const sort = $('#sort');
   const categoryList = $('#category-list');
   const dialog = $('#product-dialog');
+  const shortlistDialog = $('#shortlist-dialog');
+  const shortlistKey = 'crea_glass_shortlist_v1';
+  let shortlist = new Set();
+  let activeProduct = null;
+  try {
+    const stored = JSON.parse(localStorage.getItem(shortlistKey) || '[]');
+    if (Array.isArray(stored)) shortlist = new Set(stored.filter(id => products.some(product => product.id === id && !product.sold)));
+  } catch (_) { /* Private browsing can disable storage. The list still works for this visit. */ }
   const categories = ['Alle', 'Neue Glasplatten', 'Glastrennwände', 'Glastüren', 'Glaswaschtische', 'Ausstellungsstücke', 'Duschen', 'Spiegel', 'Glasbilder', 'Tische & Möbel', 'Zubehör'];
   let category = 'Alle';
   let limit = 24;
@@ -29,6 +37,67 @@
     if (className) element.className = className;
     if (text !== undefined) element.textContent = text;
     return element;
+  }
+
+  function saveShortlist() {
+    try { localStorage.setItem(shortlistKey, JSON.stringify([...shortlist])); } catch (_) { /* Keep the in-memory list. */ }
+    updateShortlistUI();
+  }
+
+  function toggleShortlist(product) {
+    if (product.sold) return;
+    if (shortlist.has(product.id)) shortlist.delete(product.id);
+    else shortlist.add(product.id);
+    saveShortlist();
+  }
+
+  function updateShortlistUI() {
+    $('#shortlist-count').textContent = String(shortlist.size);
+    $('#mobile-count').textContent = String(shortlist.size);
+    for (const button of document.querySelectorAll('.save-button')) {
+      const selected = shortlist.has(button.dataset.id);
+      button.setAttribute('aria-pressed', String(selected));
+      button.textContent = selected ? '♥' : '♡';
+      button.setAttribute('aria-label', selected ? 'Aus Merkliste entfernen' : 'Zur Merkliste hinzufügen');
+    }
+    const save = $('#dialog-save');
+    if (activeProduct && !activeProduct.sold) {
+      const selected = shortlist.has(activeProduct.id);
+      save.setAttribute('aria-pressed', String(selected));
+      save.textContent = selected ? '♥ Aus Merkliste entfernen' : '♡ Zur Merkliste hinzufügen';
+    }
+    if (shortlistDialog.open) renderShortlist();
+  }
+
+  function renderShortlist() {
+    const selected = products.filter(product => shortlist.has(product.id) && !product.sold);
+    const container = $('#shortlist-items');
+    container.replaceChildren();
+    for (const product of selected) {
+      const item = node('div', 'shortlist-item');
+      const image = node('img');
+      image.src = product.image;
+      image.alt = product.title;
+      image.loading = 'lazy';
+      const details = node('div');
+      details.append(node('strong', '', `${product.code} · ${product.title}`), node('span', '', priceInfo(product).value));
+      const remove = node('button', '', 'Entfernen');
+      remove.type = 'button';
+      remove.setAttribute('aria-label', `${product.code} aus Merkliste entfernen`);
+      remove.addEventListener('click', () => toggleShortlist(product));
+      item.append(image, details, remove);
+      container.append(item);
+    }
+    if (!selected.length) container.append(node('p', 'shortlist-empty', 'Noch keine Stücke vorgemerkt. Tippen Sie bei einem Produkt auf das Herz.'));
+    $('.shortlist-actions').hidden = selected.length === 0;
+    const message = `Guten Tag, ich interessiere mich für folgende Stücke aus dem Lagerverkauf November 2026:\n${selected.map(product => `• ${product.code} – ${product.title}`).join('\n')}\nBitte bestätigen Sie mir aktuelle Preise und Verfügbarkeit sowie die Abholung in Unterseen.`;
+    $('#shortlist-whatsapp').href = `https://wa.me/41794152056?text=${encodeURIComponent(message)}`;
+    $('#shortlist-email').href = `mailto:verkauf@crea.glass.ch?subject=${encodeURIComponent('Anfrage Merkliste – Lagerverkauf November 2026')}&body=${encodeURIComponent(message)}`;
+  }
+
+  function openShortlist() {
+    renderShortlist();
+    shortlistDialog.showModal();
   }
 
   function renderCategories() {
@@ -82,6 +151,15 @@
     image.alt = `${product.title} – ${product.code}`;
     image.width = 1024; image.height = 1024; image.loading = 'lazy'; image.decoding = 'async';
     imageBox.append(image, node('span', `status-pill${product.sold ? ' sold' : ''}`, statusLabel(product)));
+    if (!product.sold) {
+      const save = node('button', 'save-button', shortlist.has(product.id) ? '♥' : '♡');
+      save.type = 'button';
+      save.dataset.id = product.id;
+      save.setAttribute('aria-pressed', String(shortlist.has(product.id)));
+      save.setAttribute('aria-label', shortlist.has(product.id) ? 'Aus Merkliste entfernen' : 'Zur Merkliste hinzufügen');
+      save.addEventListener('click', () => toggleShortlist(product));
+      imageBox.append(save);
+    }
     const body = node('div', 'card-body');
     const meta = node('div', 'card-meta');
     meta.append(node('span', '', product.code), node('span', '', product.category));
@@ -116,6 +194,7 @@
   }
 
   function openProduct(product) {
+    activeProduct = product;
     $('#dialog-image').src = product.image;
     $('#dialog-image').alt = `${product.title} – ${product.description}`;
     $('#dialog-category').textContent = product.category;
@@ -153,6 +232,8 @@
       : `Guten Tag, ich interessiere mich für ${product.code} (${product.title}) aus dem Lagerverkauf November 2026. Bitte teilen Sie mir den aktuellen Preis und die Verfügbarkeit mit.`;
     $('#dialog-whatsapp').href = `https://wa.me/41794152056?text=${encodeURIComponent(inquiry)}`;
     $('#dialog-email').href = `mailto:verkauf@crea.glass.ch?subject=${encodeURIComponent(`Anfrage ${product.code} – Lagerverkauf November 2026`)}&body=${encodeURIComponent(inquiry)}`;
+    $('#dialog-save').hidden = product.sold;
+    updateShortlistUI();
     $('.dialog-contact p').textContent = product.sold ? 'Ähnliches Stück anfragen' : 'Mit diesem Artikelcode anfragen';
     dialog.showModal();
   }
@@ -172,5 +253,11 @@
   $('#load-more').addEventListener('click', () => { limit += 24; render(); });
   $('#dialog-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+  $('#dialog-save').addEventListener('click', () => { if (activeProduct) toggleShortlist(activeProduct); });
+  $('#open-shortlist').addEventListener('click', openShortlist);
+  $('#mobile-shortlist').addEventListener('click', openShortlist);
+  $('#shortlist-close').addEventListener('click', () => shortlistDialog.close());
+  shortlistDialog.addEventListener('click', event => { if (event.target === shortlistDialog) shortlistDialog.close(); });
+  updateShortlistUI();
   render();
 })();
