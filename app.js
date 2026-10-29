@@ -46,12 +46,16 @@
   }
 
   function filteredProducts() {
-    const words = normalize(search.value).split(/\s+/).filter(Boolean);
+    const query = normalize(search.value).trim();
+    const words = query.split(/\s+/).filter(Boolean);
+    const compact = value => normalize(value).replace(/[^a-z0-9]/g, '');
+    const exactCode = query ? products.find(product => compact(product.code) === compact(query)) : null;
     const status = availability.value;
     const selected = products.filter(product => {
       if (category !== 'Alle' && product.category !== category) return false;
       if (status === 'available' && product.sold) return false;
       if (status === 'sold' && !product.sold) return false;
+      if (exactCode) return product.id === exactCode.id;
       const haystack = normalize([product.code, product.title, product.description, product.category, product.saleNote].join(' '));
       return words.every(word => haystack.includes(word));
     });
