@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b25">
+  <meta name="description" content="Crea-Glass Lagerverkauf November 2026: 121 Glas-Einzelstücke, davon 117 zur Abholung ab Werk in Unterseen. Entdecken und direkt anfragen.">
+  <title>Lagerverkauf November 2026 | Crea-Glass</title>
+  <link rel="icon" href="assets/crea-glass-logo.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="catalog-data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#katalog">Zum Katalog springen</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#start" aria-label="Crea-Glass – zur Startseite"><img src="assets/crea-glass-logo.png" alt="Crea-Glass" width="160" height="84"><span>GLASMANUFAKTUR<br>UNTERSEEN</span></a>
+      <nav class="main-nav" aria-label="Hauptnavigation">
+        <a href="#katalog">Katalog</a>
+        <a href="#abholung">Abholung</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="header-contact" href="https://wa.me/41794152056?text=Guten%20Tag%2C%20ich%20interessiere%20mich%20f%C3%BCr%20den%20Lagerverkauf%20November%202026." target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="start">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">CREA-GLASS / LAGERVERKAUF / NOVEMBER 2026</p>
+        <h1 id="hero-title">Glas, das <em>bleibt.</em></h1>
+        <p class="hero-lead">Besondere Einzelstücke aus der Glasmanufaktur. Entdecken Sie Glasplatten, Waschtische, Duschen, Türen und mehr – die verfügbaren Stücke stehen zur direkten Abholung in Unterseen bereit.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#katalog">Stücke entdecken <span aria-hidden="true">↓</span></a><a class="quiet-link" href="#abholung">So funktioniert die Abholung <span aria-hidden="true">↗</span></a></div>
+        <div class="hero-caption"><span class="pulse" aria-hidden="true"></span> 117 verfügbare Stücke · Einzelstücke, solange Vorrat reicht</div>
+      </div>
+      <div class="hero-visual"><div class="hero-image-frame"><img src="assets/photos/gb-01.webp" alt="Beleuchtete strukturierte Glasplatte aus der Crea-Glass Manufaktur" width="1024" height="1024"><span class="glass-edge" aria-hidden="true"></span></div><div class="hero-image-label"><span>01 / GLAS & LICHT</span><span>CREA-GLASS · UNTERSEEN</span></div></div>
+    </section>
+
+    <section class="facts" aria-label="Katalog auf einen Blick">
+      <div><strong>121</strong><span>Positionen im Katalog</span></div>
+      <div><strong>117</strong><span>aktuell verfügbar</span></div>
+      <div><strong>04</strong><span>als verkauft markiert</span></div>
+      <div class="facts-place"><strong>Ab Werk</strong><span>Eichzun 4 · 3800 Unterseen</span></div>
+    </section>
+
+    <section class="catalog-section" id="katalog" aria-labelledby="catalog-title">
+      <div class="section-heading"><div><p class="eyebrow">DIE AUSWAHL</p><h2 id="catalog-title">Finden Sie Ihr Stück.</h2></div><p>Jedes Stück mit Foto, Code und verfügbaren Angaben. Bei Interesse öffnen Sie den Artikel und wählen den direkten Kontakt.</p></div>
+      <div class="catalog-tools">
+        <label class="search-control"><span class="field-label">Suchen</span><span class="input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input id="search" type="search" placeholder="Code, Produkt oder Masse" autocomplete="off"></span></label>
+        <label class="select-control"><span class="field-label">Verfügbarkeit</span><select id="availability"><option value="all">Alle Stücke</option><option value="available">Nur verfügbar</option><option value="sold">Verkauft</option></select></label>
+        <label class="select-control"><span class="field-label">Sortieren</span><select id="sort"><option value="featured">Katalogreihenfolge</option><option value="code">Code A–Z</option><option value="price-asc">Preis aufsteigend</option><option value="price-desc">Preis absteigend</option></select></label>
+      </div>
+      <div class="category-list" id="category-list" aria-label="Produktkategorien"></div>
+      <div class="result-line"><p id="result-count" aria-live="polite"></p><button id="clear-filters" type="button">Filter zurücksetzen <span aria-hidden="true">↗</span></button></div>
+      <div class="product-grid" id="product-grid"></div>
+      <div class="empty-state" id="empty-state" hidden><h3>Kein Stück gefunden.</h3><p>Versuchen Sie einen anderen Code oder entfernen Sie die Filter.</p><button id="empty-reset" class="button button-outline" type="button">Alle Stücke anzeigen</button></div>
+      <div class="more-wrap"><button class="button button-outline" id="load-more" type="button" hidden>Weitere Stücke anzeigen <span aria-hidden="true">↓</span></button></div>
+    </section>
+
+    <section class="info-section" id="abholung" aria-labelledby="pickup-title">
+      <div class="info-main"><p class="eyebrow">DIREKT AUS DER MANUFAKTUR</p><h2 id="pickup-title">Auswählen. Anfragen. Abholen.</h2><p>Notieren Sie den Artikelcode und fragen Sie den aktuellen Preis und die Verfügbarkeit an. Wir vereinbaren mit Ihnen die Abholung in unserer Manufaktur in Unterseen.</p><a class="button button-primary" href="#kontakt">Kontakt aufnehmen <span aria-hidden="true">↗</span></a></div>
+      <div class="info-details"><div><span class="info-index">01</span><h3>Artikel auswählen</h3><p>Nutzen Sie die Suche oder die Kategorien und öffnen Sie „Mehr erfahren“.</p></div><div><span class="info-index">02</span><h3>Verfügbarkeit bestätigen</h3><p>Fragen Sie mit dem Artikelcode per WhatsApp, E-Mail oder Telefon an.</p></div><div><span class="info-index">03</span><h3>In Unterseen abholen</h3><p>Die verfügbaren Stücke stehen nach Vereinbarung ab Werk bereit.</p></div></div>
+    </section>
+
+    <section class="price-disclosure" aria-labelledby="prices-title"><div><p class="eyebrow">TRANSPARENTE ANGABEN</p><h2 id="prices-title">Preise richtig einordnen.</h2></div><p>Fünf Preise wurden für November 2026 aktualisiert und sind als <strong>Aktionspreis</strong> markiert. Andere ausgewiesene Beträge stammen aus dem Katalog Mai 2025 und dienen nur als <strong>Referenz</strong>. Für die 20 neuen Glasplatten gilt <strong>Preis auf Anfrage</strong>. Bitte aktuellen Preis und Verfügbarkeit vor der Abholung bestätigen.</p></section>
+
+    <section class="contact-section" id="kontakt" aria-labelledby="contact-title"><div class="contact-copy"><p class="eyebrow">KONTAKT / CREA-GLASS GMBH</p><h2 id="contact-title">Ein Stück entdeckt?</h2><p>Schicken Sie uns den Artikelcode. Wir klären den aktuellen Preis und reservieren einen Termin zur Abholung.</p><address>Eichzun 4<br>3800 Unterseen b. Interlaken<br>Schweiz</address></div><div class="contact-actions"><a href="https://wa.me/41794152056?text=Guten%20Tag%2C%20ich%20interessiere%20mich%20f%C3%BCr%20den%20Lagerverkauf%20November%202026." target="_blank" rel="noopener noreferrer"><span><small>WHATSAPP</small><strong>+41 79 415 20 56</strong></span><span aria-hidden="true">↗</span></a><a href="mailto:verkauf@crea.glass.ch?subject=Anfrage%20Lagerverkauf%20November%202026"><span><small>E-MAIL</small><strong>verkauf@crea.glass.ch</strong></span><span aria-hidden="true">↗</span></a><a href="tel:+41338212080"><span><small>TELEFON</small><strong>+41 33 821 20 80</strong></span><span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <footer class="site-footer"><img src="assets/crea-glass-logo.png" alt="Crea-Glass" width="126" height="66"><p>Glas mit Charakter. Direkt aus Unterseen.</p><div><a href="https://crea-glass.ch" target="_blank" rel="noopener noreferrer">crea-glass.ch ↗</a><span>Katalogstand: Oktober 2026</span></div></footer>
+
+  <dialog id="product-dialog" aria-labelledby="dialog-title"><button class="dialog-close" id="dialog-close" type="button" aria-label="Schliessen">×</button><div class="dialog-media"><img id="dialog-image" src="" alt=""></div><div class="dialog-content"><p id="dialog-category" class="eyebrow"></p><p id="dialog-code" class="dialog-code"></p><h2 id="dialog-title"></h2><p id="dialog-description" class="dialog-description"></p><p id="dialog-status" class="dialog-status"></p><div id="dialog-prices" class="dialog-prices"></div><p id="dialog-note" class="dialog-note"></p><div class="dialog-contact"><p>Mit diesem Artikelcode anfragen</p><a id="dialog-whatsapp" class="button button-primary" href="#" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a><a id="dialog-email" class="button button-outline" href="#">E-Mail <span aria-hidden="true">↗</span></a><a id="dialog-phone" class="button button-outline" href="tel:+41338212080">Anrufen <span aria-hidden="true">↗</span></a></div></div></dialog>
+</body>
+</html>
