@@ -1,31 +1,35 @@
-# Crea-Glass Ausstellungsverkauf – November 2026
+# Crea-Glass Fundgrube – Einzelstücke aus der Ausstellung
 
-Statischer, responsiver Produktkatalog für den Ausstellungsverkauf der Crea-Glass GmbH, Unterseen.
+Online-Showroom für den Ausstellungsverkauf der Crea-Glass GmbH, Unterseen. Die Seite ist als Erweiterung von crea-glass.ch gebaut: gleicher Kopfbereich mit dem offiziellen Menü, gleiche Schrift (Lato), gleiche Farben, gleiche Abschnittslogik (graue Bänder, Bilder, die ins Band ragen) und derselbe Fussbereich.
 
-- 121 Positionen mit quadratischen Produktbildern; alle Stücke sind neu und unbenutzt (Ausstellungsstücke)
-- 117 verfügbare Stücke und vier sichtbar als verkauft markierte Artikel
-- Fünf bestätigte Aktionspreise, Katalogpreise als Richtwert und 20 Glasplatten mit Preis auf Anfrage
-- Suche, Kategorien, Verfügbarkeitsfilter, Anfragekorb und direkter Kontakt über WhatsApp, E-Mail oder Telefon
-- Link pro Stück: `index.html#artikel/<id>` oder `#artikel/<Artikelcode>` öffnet das Produkt direkt (für Inserate auf tutti, ricardo, Social Media)
-- Lieferung & Montage: Standort eingeben (PLZ, Adresse oder Gerätestandort), Zone und Richtpreis werden sofort angezeigt und in die Anfrage übernommen
+- 121 Einzelstücke, neu und unbenutzt, mit Foto, Titel, Details und Preis
+- Preise wie im Crea-Glass Shop (Fundgrube); 85 Stücke lassen sich mit «In den Warenkorb» direkt in den offiziellen WooCommerce-Warenkorb legen
+- Aktion im November: die fünf Stücke mit dem grössten Preisvorteil, Preis durchgestrichen
+- Räume: sechs Bildkacheln, die den Katalog filtern
+- Katalog mit Suche, Preisfilter, Sortierung, Kategorien, Merkliste und «Zuletzt angesehen»
+- Produktansicht mit Preisaufschlüsselung, «Passt dazu», Lieferung und Montage, Link teilen
+- Lieferung & Montage: Standort eingeben, Zone und Richtpreis sofort; Richtpreis wandert in die Anfrage
+- Link pro Stück: `#artikel/<id>` oder `#artikel/<Artikelcode>` (für Inserate und Social Media)
+- Kontaktformular wie auf der Hauptseite (öffnet das E-Mail-Programm), Karte auf Klick
 
 ## Dateien
 
 | Datei | Inhalt |
 | --- | --- |
-| `index.html` | Seitenaufbau und Texte |
-| `styles.css` | Gestaltung, Animationen, mobile Ansicht |
-| `app.js` | Katalog, Anfragekorb, Produktdialog, Links pro Stück, Anfrage-Texte |
+| `index.html` | Seitenaufbau, Menü der Hauptseite, Texte |
+| `styles.css` | Gestaltung nach crea-glass.ch |
+| `app.js` | Katalog, Highlights, Räume, Produktansicht, Merkliste, Anfrage, Warenkorb-Links |
 | `services.js` | Tarif für Lieferung und Montage, Zonen, Standortsuche, Distanz, Richtpreis |
-| `catalog-data.js` | Produktdaten (Titel, Untertitel, Details, Preise, Bilder) |
-| `docs/Preisvorschlag_November_2026.xlsx` | Interner Preisvorschlag pro Stück, Tarif Lieferung & Montage, Montagezeiten, Annahmen |
+| `catalog-data.js` | Produktdaten inkl. Shop-Preis, Shop-Link und Shop-Produkt-ID |
+| `assets/crea-glass-logo.svg` | Offizielles Logo (SVG der Hauptseite) |
+| `docs/Preisvorschlag_November_2026.xlsx` | Interner Preisvorschlag, Tarif Lieferung & Montage, Montagezeiten, Shop-Abgleich |
 
-Die Website benötigt keinen Build-Schritt und kann als GitHub Pages Site direkt aus dem Hauptverzeichnis veröffentlicht werden.
+Keine Build-Schritte. Direkt als statische Seite veröffentlichen (GitHub Pages, Vercel, Subdomain).
 
 ## Tarif anpassen
 
-Alle Beträge für Lieferung und Montage stehen in `services.js` im Objekt `TARIFF` (Stundensatz, Zonen, Gratislieferung ab Warenwert, Postversand). Die Montagezeiten pro Produktgruppe stehen im Objekt `INSTALL`. Dieselben Werte stehen im Arbeitsblatt «Annahmen» der Excel-Datei.
+Alle Beträge für Lieferung und Montage stehen in `services.js` im Objekt `TARIFF`, die Montagezeiten pro Produktgruppe in `INSTALL`. Dieselben Werte stehen im Arbeitsblatt «Annahmen» der Excel-Datei.
 
-## Standortsuche
+## Preise aktualisieren
 
-Die Standortsuche nutzt `api3.geo.admin.ch` (Schweizer Adressen, ohne Schlüssel), als Ersatz OpenStreetMap Nominatim und zuletzt eine eingebaute PLZ-Tabelle. Die Strassendistanz kommt von OSRM; fällt der Dienst aus, wird die Luftlinie mit Faktor 1,35 verwendet und als «ca.» gekennzeichnet.
+Die Shop-Preise wurden am 30.10.2026 von crea-glass.ch/shop übernommen. Ändert der Shop Preise, muss `catalog-data.js` nachgeführt werden (Felder `displayPrice`, `shopRegular`, `shopUrl`, `shopId`).
