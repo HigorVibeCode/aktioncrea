@@ -4,26 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Crea-Glass Lagerverkauf November 2026: 121 Glas-Einzelstücke, davon 117 zur Abholung ab Werk in Unterseen. Entdecken und direkt anfragen.">
-  <title>Lagerverkauf November 2026 | Crea-Glass</title>
+  <meta name="description" content="Crea-Glass Ausstellungsverkauf November 2026: 121 neue Glas-Einzelstücke aus der Manufaktur in Unterseen. Online auswählen, Lieferung und Montage berechnen, direkt anfragen.">
+  <title>Ausstellungsverkauf November 2026 | Crea-Glass</title>
   <link rel="icon" href="assets/crea-glass-logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261030-showroom-2">
-  <script src="catalog-data.js" defer></script>
-  <script src="app.js?v=20261030-showroom-2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261030-service-1">
+  <script src="catalog-data.js?v=20261030-service-1" defer></script>
+  <script src="services.js?v=20261030-service-1" defer></script>
+  <script src="app.js?v=20261030-service-1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#katalog">Zum Katalog springen</a>
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="header-inner">
       <a class="brand" href="#start" aria-label="Crea-Glass – zur Startseite"><img src="assets/crea-glass-logo.png" alt="Crea-Glass" width="160" height="84"><span>GLASMANUFAKTUR<br>UNTERSEEN</span></a>
       <nav class="main-nav" aria-label="Hauptnavigation">
-        <a href="#katalog">Produkte</a>
-        <a href="#featured-title">Aktionspreise</a>
-        <a href="#abholung">Showroom</a>
-        <a href="#kontakt">Kontakt</a>
+        <a href="#katalog" data-section="katalog">Produkte</a>
+        <a href="#service" data-section="service">Lieferung &amp; Montage</a>
+        <a href="#abholung" data-section="abholung">Showroom</a>
+        <a href="#kontakt" data-section="kontakt">Kontakt</a>
       </nav>
       <button class="header-shortlist" id="open-shortlist" type="button" aria-label="Anfragekorb öffnen">Anfragekorb <span id="shortlist-count">0</span></button>
     </div>
@@ -32,19 +33,19 @@
   <main id="start">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">CREA-GLASS · LAGERVERKAUF NOVEMBER 2026</p>
-        <h1 id="hero-title">Online entdecken.<br>Vor Ort verlieben.</h1>
-        <p class="hero-lead">Finden Sie Ihr Einzelstück. Erleben Sie Struktur, Licht und Oberfläche persönlich in unserem Showroom in Unterseen – mit Ihrer Auswahl als Ausgangspunkt.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#katalog">Jetzt entdecken <span aria-hidden="true">↓</span></a><a class="quiet-link" href="#abholung">Showroom entdecken <span aria-hidden="true">↗</span></a></div>
-        <div class="hero-caption">117 verfügbare Stücke · Nur solange Vorrat reicht</div>
+        <p class="eyebrow">CREA-GLASS · AUSSTELLUNGSVERKAUF NOVEMBER 2026</p>
+        <h1 id="hero-title">Neu. Einmalig.<br>Sofort verfügbar.</h1>
+        <p class="hero-lead">121 Glas-Einzelstücke aus unserer Ausstellung – neu und unbenutzt, gefertigt in Unterseen. Online auswählen, Lieferung und Montage berechnen, persönlich entscheiden.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#katalog">Stücke entdecken <span aria-hidden="true">↓</span></a><a class="quiet-link" href="#service">Lieferung &amp; Montage berechnen <span aria-hidden="true">↗</span></a></div>
+        <div class="hero-caption"><span class="hero-fact"><strong>117</strong> verfügbare Stücke</span><span class="hero-fact"><strong>Neu</strong> und unbenutzt</span><span class="hero-fact"><strong>Montage</strong> aus einer Hand</span></div>
       </div>
     </section>
 
-    <section class="discovery-section" aria-labelledby="discovery-title"><p class="eyebrow">WAS PLANEN SIE?</p><h2 id="discovery-title">Ihr Raum. Ihr Stück Glas.</h2><p>Entdecken Sie passende Produktgruppen für Ihre Idee. Masse und technische Eignung klären wir gemeinsam.</p><div class="application-grid" id="application-grid"></div></section>
-    <section class="featured-section" aria-labelledby="featured-title"><div class="section-heading"><div><p class="eyebrow">NOVEMBER 2026</p><h2 id="featured-title">Ausgewählte Aktionspreise.</h2></div><p>Diese fünf Preise sind für November aktualisiert. Öffnen Sie ein Stück für Details und Ihre Besuchsanfrage.</p></div><div id="featured-grid" class="featured-grid"></div></section>
+    <section class="discovery-section reveal" aria-labelledby="discovery-title"><p class="eyebrow">WAS PLANEN SIE?</p><h2 id="discovery-title">Ihr Raum. Ihr Stück Glas.</h2><p>Jedes Stück wurde für unsere Ausstellung gefertigt und ist neu. Wählen Sie nach Anwendung – Masse und Einbau klären wir gemeinsam.</p><div class="application-grid" id="application-grid"></div></section>
+    <section class="featured-section reveal" aria-labelledby="featured-title"><div class="section-heading"><div><p class="eyebrow">NOVEMBER 2026</p><h2 id="featured-title">Ausgewählte Aktionspreise.</h2></div><p>Diese Preise gelten im November. Öffnen Sie ein Stück für Details, Lieferung und Montage.</p></div><div id="featured-grid" class="featured-grid"></div></section>
 
     <section class="catalog-section" id="katalog" aria-labelledby="catalog-title">
-      <div class="section-heading"><div><p class="eyebrow">DIE AUSWAHL</p><h2 id="catalog-title">Finden Sie Ihr Stück.</h2></div><p>Bild antippen, Details ansehen und Stücke in Ihren Anfragekorb legen. Sie entscheiden: persönlich ansehen oder zunächst ein Angebot erhalten.</p></div>
+      <div class="section-heading reveal"><div><p class="eyebrow">DIE AUSWAHL</p><h2 id="catalog-title">Finden Sie Ihr Stück.</h2></div><p>Bild antippen, Details ansehen und Stücke in Ihren Anfragekorb legen. Dann entscheiden: abholen, liefern lassen oder montieren lassen.</p></div>
       <div class="catalog-tools">
         <label class="search-control"><span class="field-label">Suchen</span><span class="input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input id="search" type="search" placeholder="Code, Produkt oder Masse" autocomplete="off"></span></label>
         <label class="select-control"><span class="field-label">Verfügbarkeit</span><select id="availability"><option value="all">Alle Stücke</option><option value="available">Nur verfügbar</option><option value="sold">Verkauft</option></select></label>
@@ -57,20 +58,51 @@
       <div class="more-wrap"><button class="button button-outline" id="load-more" type="button" hidden>Weitere Stücke anzeigen <span aria-hidden="true">↓</span></button></div>
     </section>
 
-    <section class="info-section" id="abholung" aria-labelledby="pickup-title">
-      <div class="info-main"><p class="eyebrow">SHOWROOM · UNTERSEEN BEI INTERLAKEN</p><h2 id="pickup-title">Glas wirkt im echten Licht.</h2><p>Wie fühlt sich die Oberfläche an? Wie wirkt die Struktur aus der Nähe? Und passen die Masse zu Ihrem Projekt? Bringen Sie Ihre Auswahl, Raumfotos und Masse mit – so wird aus einer Idee eine konkrete Entscheidung.</p><button class="button button-primary" type="button" id="visit-general">Besuch anfragen ↗</button><p class="visit-address">Eichzun 4 · 3800 Unterseen<br>Mo–Fr 08:00–12:00 / 13:30–17:00<br>Bitte Termin und Verfügbarkeit vor der Anreise bestätigen.</p><a href="https://www.google.com/maps/search/?api=1&amp;query=Crea-Glass%20Eichzun%204%203800%20Unterseen" target="_blank" rel="noopener noreferrer">Route zum Showroom ↗</a></div>
-      <div class="info-details"><div><span class="info-index">01</span><h3>Ihre Favoriten auswählen</h3><p>Ein oder mehrere Stücke in den Anfragekorb legen. Sie bleiben auf diesem Gerät gespeichert.</p></div><div><span class="info-index">02</span><h3>Besuch mit Ihrer Auswahl anfragen</h3><p>Wunschtermin und Projekt ergänzen. Wir bestätigen Termin und Verfügbarkeit persönlich.</p></div><div><span class="info-index">03</span><h3>Vor Ort entscheiden</h3><p>Material und Masse prüfen, Fragen klären und die Abholung vereinbaren.</p></div></div>
+    <section class="service-section" id="service" aria-labelledby="service-title">
+      <div class="service-intro reveal">
+        <p class="eyebrow">LIEFERUNG &amp; MONTAGE</p>
+        <h2 id="service-title">Wir bringen es. Wir montieren es.</h2>
+        <p>Glas braucht Erfahrung beim Transport und beim Einbau. Unser Montageteam liefert Ihr Stück und montiert es fachgerecht – im Berner Oberland und darüber hinaus. Geben Sie Ihren Standort ein und sehen Sie den Richtpreis sofort.</p>
+        <ul class="service-facts">
+          <li><strong>Abholung</strong><span>Ab Werk in Unterseen, kostenlos</span></li>
+          <li><strong>Lieferung</strong><span>Ab CHF <span data-tariff="delivery-a"></span> · gratis ab CHF <span data-tariff="free-from"></span> Warenwert</span></li>
+          <li><strong>Montage</strong><span>CHF <span data-tariff="rate"></span> pro Stunde, Team mit zwei Personen</span></li>
+        </ul>
+      </div>
+      <div class="service-calculator reveal" id="service-calculator">
+        <form class="location-form" id="location-form" autocomplete="off">
+          <label for="location-input">Ihr Standort</label>
+          <div class="location-row">
+            <input id="location-input" type="text" inputmode="text" placeholder="PLZ, Ort oder Adresse" aria-describedby="location-status">
+            <button type="submit" class="button button-primary">Berechnen</button>
+          </div>
+          <button type="button" class="locate-button" id="locate-button"><span aria-hidden="true">◎</span> Meinen Standort verwenden</button>
+          <p id="location-status" class="location-status" role="status"></p>
+        </form>
+        <div class="service-result" id="service-result" hidden>
+          <div class="service-zone"><span class="eyebrow">IHRE ZONE</span><strong id="service-zone-label"></strong><span id="service-distance"></span></div>
+          <div class="service-options" id="service-options"></div>
+          <p class="service-note">Richtpreise. Crea-Glass bestätigt Preis, Zeitfenster und Umfang vor dem Auftrag. Sanitär- und Elektroanschlüsse durch Ihren Installateur oder nach Absprache.</p>
+          <div class="service-actions"><button type="button" class="button button-outline" id="service-to-shortlist">Mit meiner Auswahl berechnen <span aria-hidden="true">↗</span></button></div>
+        </div>
+        <div class="service-zones" id="service-zones"></div>
+      </div>
     </section>
 
-    <section class="price-disclosure" aria-labelledby="prices-title"><div><p class="eyebrow">TRANSPARENTE ANGABEN</p><h2 id="prices-title">Preise richtig einordnen.</h2></div><p>Fünf Preise wurden für November 2026 aktualisiert und sind als <strong>Aktionspreis</strong> markiert. Andere ausgewiesene Beträge stammen aus dem Katalog Mai 2025 und dienen nur als <strong>Referenz</strong>. Für die 20 neuen Glasplatten gilt <strong>Preis auf Anfrage</strong>. Bitte aktuellen Preis und Verfügbarkeit vor der Abholung bestätigen.</p></section>
+    <section class="info-section" id="abholung" aria-labelledby="pickup-title">
+      <div class="info-main reveal"><p class="eyebrow">SHOWROOM · UNTERSEEN BEI INTERLAKEN</p><h2 id="pickup-title">Glas wirkt im echten Licht.</h2><p>Wie fühlt sich die Oberfläche an? Wie wirkt die Struktur aus der Nähe? Und passen die Masse zu Ihrem Projekt? Bringen Sie Ihre Auswahl, Raumfotos und Masse mit – so wird aus einer Idee eine konkrete Entscheidung.</p><button class="button button-primary" type="button" id="visit-general">Besuch anfragen ↗</button><p class="visit-address">Eichzun 4 · 3800 Unterseen<br>Mo–Fr 08:00–12:00 / 13:30–17:00<br>Bitte Termin und Verfügbarkeit vor der Anreise bestätigen.</p><a href="https://www.google.com/maps/search/?api=1&amp;query=Crea-Glass%20Eichzun%204%203800%20Unterseen" target="_blank" rel="noopener noreferrer">Route zum Showroom ↗</a></div>
+      <div class="info-details reveal"><div><span class="info-index">01</span><h3>Ihre Favoriten auswählen</h3><p>Ein oder mehrere Stücke in den Anfragekorb legen. Sie bleiben auf diesem Gerät gespeichert.</p></div><div><span class="info-index">02</span><h3>Abholen, liefern oder montieren</h3><p>Standort eingeben und den Richtpreis für Lieferung und Montage sehen. Oder einen Besuch im Showroom anfragen.</p></div><div><span class="info-index">03</span><h3>Wir bestätigen persönlich</h3><p>Preis, Verfügbarkeit und Termin bestätigen wir per WhatsApp, E-Mail oder Telefon.</p></div></div>
+    </section>
 
-    <section class="contact-section" id="kontakt" aria-labelledby="contact-title"><div class="contact-copy"><p class="eyebrow">KONTAKT / CREA-GLASS GMBH</p><h2 id="contact-title">Lernen wir Ihr Projekt kennen.</h2><p>Vorbeikommen oder aus der Ferne anfragen: Wir klären Preis, Masse und Verfügbarkeit mit Ihnen. Eine Besuchsanfrage ist erst nach unserer Bestätigung verbindlich.</p><address>Eichzun 4<br>3800 Unterseen b. Interlaken<br>Schweiz</address></div><div class="contact-actions"><a href="https://wa.me/41794152056?text=Guten%20Tag%2C%20ich%20interessiere%20mich%20f%C3%BCr%20den%20Lagerverkauf%20November%202026." target="_blank" rel="noopener noreferrer"><span><small>WHATSAPP</small><strong>+41 79 415 20 56</strong></span><span aria-hidden="true">↗</span></a><a href="mailto:verkauf@crea-glass.ch?subject=Anfrage%20Lagerverkauf%20November%202026"><span><small>E-MAIL</small><strong>verkauf@crea-glass.ch</strong></span><span aria-hidden="true">↗</span></a><a href="tel:+41338212080"><span><small>TELEFON</small><strong>+41 33 821 20 80</strong></span><span aria-hidden="true">↗</span></a></div></section>
+    <section class="price-disclosure reveal" aria-labelledby="prices-title"><div><p class="eyebrow">PREISE</p><h2 id="prices-title">Klar ausgewiesen.</h2></div><p>Alle Stücke sind neu und unbenutzt. Sie wurden für unsere Ausstellung gefertigt. <strong>Aktionspreise</strong> gelten im November 2026. <strong>Katalogpreise</strong> sind Richtwerte aus unserem Katalog; den aktuellen Preis bestätigen wir mit Ihrer Anfrage. Für Glasplatten ohne Preis erhalten Sie eine Offerte nach Masse und Einsatz.</p></section>
+
+    <section class="contact-section" id="kontakt" aria-labelledby="contact-title"><div class="contact-copy reveal"><p class="eyebrow">KONTAKT / CREA-GLASS GMBH</p><h2 id="contact-title">Lernen wir Ihr Projekt kennen.</h2><p>Vorbeikommen oder aus der Ferne anfragen: Wir klären Preis, Masse, Lieferung und Montage mit Ihnen. Eine Anfrage ist erst nach unserer Bestätigung verbindlich.</p><address>Eichzun 4<br>3800 Unterseen b. Interlaken<br>Schweiz</address></div><div class="contact-actions reveal"><a href="https://wa.me/41794152056?text=Guten%20Tag%2C%20ich%20interessiere%20mich%20f%C3%BCr%20den%20Ausstellungsverkauf%20November%202026." target="_blank" rel="noopener noreferrer"><span><small>WHATSAPP</small><strong>+41 79 415 20 56</strong></span><span aria-hidden="true">↗</span></a><a href="mailto:verkauf@crea-glass.ch?subject=Anfrage%20Ausstellungsverkauf%20November%202026"><span><small>E-MAIL</small><strong>verkauf@crea-glass.ch</strong></span><span aria-hidden="true">↗</span></a><a href="tel:+41338212080"><span><small>TELEFON</small><strong>+41 33 821 20 80</strong></span><span aria-hidden="true">↗</span></a></div></section>
   </main>
   <footer class="site-footer"><img src="assets/crea-glass-logo.png" alt="Crea-Glass" width="126" height="66"><p>Glas mit Charakter. Direkt aus Unterseen.</p><div><a href="https://crea-glass.ch" target="_blank" rel="noopener noreferrer">crea-glass.ch ↗</a><span>Katalogstand: Oktober 2026</span></div></footer>
-  <nav class="mobile-nav" aria-label="Schnellnavigation"><a href="#katalog"><span aria-hidden="true">▦</span>Produkte</a><button id="mobile-shortlist" type="button"><span aria-hidden="true">♡</span>Anfragekorb <small id="mobile-count">0</small></button><a href="#kontakt"><span aria-hidden="true">✉</span>Kontakt</a></nav>
+  <nav class="mobile-nav" aria-label="Schnellnavigation"><a href="#katalog"><span aria-hidden="true">▦</span>Produkte</a><button id="mobile-shortlist" type="button"><span aria-hidden="true">♡</span>Anfragekorb <small id="mobile-count">0</small></button><a href="#service"><span aria-hidden="true">⌂</span>Montage</a><a href="#kontakt"><span aria-hidden="true">✉</span>Kontakt</a></nav>
 
-  <dialog id="product-dialog" aria-labelledby="dialog-title"><button class="dialog-close" id="dialog-close" type="button" aria-label="Schliessen">×</button><div class="dialog-media"><button id="image-zoom" class="image-zoom" type="button" aria-label="Produktbild vergrössern"><img id="dialog-image" src="" alt=""><span>Bild vergrössern ⤢</span></button></div><div class="dialog-content"><p id="dialog-category" class="eyebrow"></p><p id="dialog-code" class="dialog-code"></p><h2 id="dialog-title"></h2><p id="dialog-description" class="dialog-description"></p><div class="product-pager"><button id="product-prev" type="button">← Vorheriges</button><span id="product-position"></span><button id="product-next" type="button">Nächstes →</button></div><p id="application-idea" class="application-idea"></p><p id="dialog-status" class="dialog-status"></p><div id="dialog-prices" class="dialog-prices"></div><p id="dialog-note" class="dialog-note"></p><button id="dialog-save" class="dialog-save" type="button">+ In den Anfragekorb</button><div class="dialog-contact"><button id="product-visit" type="button" class="button button-primary">Dieses Stück vor Ort ansehen ↗</button><button id="product-offer" type="button" class="button button-outline">Angebot für dieses Stück ↗</button><p>Mit diesem Artikelcode anfragen</p><a id="dialog-whatsapp" class="button button-outline" href="#" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a><a id="dialog-email" class="button button-outline" href="#">E-Mail <span aria-hidden="true">↗</span></a><a id="dialog-phone" class="button button-outline" href="tel:+41338212080">Anrufen <span aria-hidden="true">↗</span></a></div><div id="related-products" class="related-products"></div></div></dialog>
-  <dialog id="shortlist-dialog" aria-labelledby="shortlist-title"><div class="shortlist-header"><div><p class="eyebrow">UNVERBINDLICHE ANFRAGE</p><h2 id="shortlist-title">Ihr Anfragekorb</h2></div><button class="dialog-close" id="shortlist-close" type="button" aria-label="Schliessen">×</button></div><div id="shortlist-items" class="shortlist-items"></div><div class="inquiry-fields"><label>Wie möchten Sie weitergehen?<select id="inquiry-purpose"><option value="visit">Im Showroom ansehen</option><option value="offer">Angebot aus der Ferne erhalten</option></select></label><label>Ihr Projekt (optional)<input id="inquiry-project" maxlength="180" placeholder="z. B. Badezimmer, 100 cm Platz"></label><label id="visit-time-label">Wunschtermin (optional)<input id="inquiry-time" maxlength="100" placeholder="z. B. Freitag, 6. November, nachmittags"></label></div><p class="shortlist-note" id="inquiry-explanation">Wir bestätigen Termin, Preis und Verfügbarkeit persönlich. Ihre Auswahl ist noch keine Reservierung oder Bestellung.</p><div class="shortlist-actions"><a id="shortlist-whatsapp" class="button button-primary" href="#" target="_blank" rel="noopener noreferrer">Alle per WhatsApp anfragen ↗</a><a id="shortlist-email" class="button button-outline" href="#">Alle per E-Mail anfragen ↗</a></div></dialog>
+  <dialog id="product-dialog" aria-labelledby="dialog-title"><button class="dialog-close" id="dialog-close" type="button" aria-label="Schliessen">×</button><div class="dialog-media"><button id="image-zoom" class="image-zoom" type="button" aria-label="Produktbild vergrössern"><img id="dialog-image" src="" alt=""><span>Bild vergrössern ⤢</span></button></div><div class="dialog-content"><p id="dialog-category" class="eyebrow"></p><p id="dialog-code" class="dialog-code"></p><h2 id="dialog-title"></h2><p id="dialog-tagline" class="dialog-tagline"></p><p id="dialog-description" class="dialog-description"></p><div class="product-pager"><button id="product-prev" type="button">← Vorheriges</button><span id="product-position"></span><button id="product-next" type="button">Nächstes →</button></div><p id="dialog-status" class="dialog-status"></p><div id="dialog-prices" class="dialog-prices"></div><p id="dialog-note" class="dialog-note"></p><div id="dialog-service" class="dialog-service"></div><p id="application-idea" class="application-idea"></p><button id="dialog-save" class="dialog-save" type="button">+ In den Anfragekorb</button><div class="dialog-contact"><button id="product-visit" type="button" class="button button-primary">Dieses Stück vor Ort ansehen ↗</button><button id="product-offer" type="button" class="button button-outline">Angebot mit Lieferung oder Montage ↗</button><p>Mit diesem Artikelcode anfragen</p><a id="dialog-whatsapp" class="button button-outline" href="#" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a><a id="dialog-email" class="button button-outline" href="#">E-Mail <span aria-hidden="true">↗</span></a><a id="dialog-phone" class="button button-outline" href="tel:+41338212080">Anrufen <span aria-hidden="true">↗</span></a><button id="dialog-share" class="button button-outline" type="button">Link teilen <span aria-hidden="true">⇪</span></button></div><div id="related-products" class="related-products"></div></div></dialog>
+  <dialog id="shortlist-dialog" aria-labelledby="shortlist-title"><div class="shortlist-header"><div><p class="eyebrow">UNVERBINDLICHE ANFRAGE</p><h2 id="shortlist-title">Ihr Anfragekorb</h2></div><button class="dialog-close" id="shortlist-close" type="button" aria-label="Schliessen">×</button></div><div id="shortlist-items" class="shortlist-items"></div><div class="inquiry-fields"><label>Wie möchten Sie weitergehen?<select id="inquiry-purpose"><option value="visit">Im Showroom ansehen</option><option value="pickup">Abholen ab Werk</option><option value="delivery">Liefern lassen</option><option value="install">Liefern und montieren lassen</option></select></label><div id="inquiry-location-block" class="inquiry-location" hidden><label for="inquiry-location">Ihr Standort<span class="field-hint">PLZ, Ort oder Adresse – für Zone und Richtpreis</span></label><div class="location-row"><input id="inquiry-location" type="text" placeholder="z. B. 3600 Thun"><button type="button" class="button button-outline" id="inquiry-locate" aria-label="Meinen Standort verwenden">◎</button></div><p id="inquiry-location-status" class="location-status" role="status"></p><div id="inquiry-estimate" class="inquiry-estimate" hidden></div></div><label>Ihr Projekt (optional)<input id="inquiry-project" maxlength="180" placeholder="z. B. Badezimmer, 100 cm Platz"></label><label id="visit-time-label">Wunschtermin (optional)<input id="inquiry-time" maxlength="100" placeholder="z. B. Freitag, 6. November, nachmittags"></label></div><p class="shortlist-note" id="inquiry-explanation">Wir bestätigen Termin, Preis und Verfügbarkeit persönlich. Ihre Auswahl ist noch keine Reservierung oder Bestellung.</p><div class="shortlist-actions"><a id="shortlist-whatsapp" class="button button-primary" href="#" target="_blank" rel="noopener noreferrer">Alle per WhatsApp anfragen ↗</a><a id="shortlist-email" class="button button-outline" href="#">Alle per E-Mail anfragen ↗</a></div></dialog>
 <dialog id="zoom-dialog" aria-label="Vergrössertes Produktbild"><button id="zoom-close" class="dialog-close" type="button" aria-label="Bild schliessen">×</button><img id="zoom-image" alt=""></dialog><p id="selection-feedback" role="status" class="selection-feedback"></p>
 </body>
 </html>
