@@ -10,10 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261031-fundgrube-1">
-  <script src="catalog-data.js?v=20261031-fundgrube-1" defer></script>
-  <script src="services.js?v=20261031-fundgrube-1" defer></script>
-  <script src="app.js?v=20261031-fundgrube-1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261031-fundgrube-2">
+  <script src="catalog-data.js?v=20261031-fundgrube-2" defer></script>
+  <script src="services.js?v=20261031-fundgrube-2" defer></script>
+  <script src="app.js?v=20261031-fundgrube-2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#katalog">Zum Katalog springen</a>
@@ -119,7 +119,8 @@
 
   <main id="start">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-inner">
+      <div class="hero-bg" data-parallax="0.35" aria-hidden="true"></div>
+      <div class="hero-inner" data-parallax="-0.12">
         <p class="hero-kicker">Fundgrube · Ausstellungsverkauf</p>
         <h1 id="hero-title">Einzelstücke aus Glas</h1>
         <p class="hero-sub">Neu, unbenutzt und sofort verfügbar. <span id="hero-count">117</span> Stücke aus unserer Ausstellung in Unterseen – jedes nur einmal.</p>
@@ -131,7 +132,7 @@
     <section class="band" id="intro"><div class="container"><h2>Aus der Ausstellung zu Ihnen</h2></div></section>
     <section class="split">
       <div class="container split-grid">
-        <figure class="split-media reveal"><img src="assets/photos/ba-rd-round-shower.webp" alt="Runddusche mit Glasboden und Glasdecke in der Ausstellung von Crea-Glass" width="1024" height="1024" loading="lazy"></figure>
+        <figure class="split-media reveal"><img data-parallax="0.08" src="assets/photos/ba-rd-round-shower.webp" alt="Runddusche mit Glasboden und Glasdecke in der Ausstellung von Crea-Glass" width="1024" height="1024" loading="lazy"></figure>
         <div class="split-copy reveal">
           <p>Jedes Stück in dieser Fundgrube wurde in unserer Glasmanufaktur in Unterseen gefertigt und stand bisher in unserer Ausstellung. Es ist neu und unbenutzt. Weil wir Platz für neue Kreationen schaffen, geben wir diese Einzelstücke zu reduzierten Preisen ab – zu denselben Preisen wie in unserem Shop.</p>
           <p>Sie wählen aus, wie es weitergeht: in der Ausstellung ansehen und abholen, liefern lassen oder durch unser Team montieren lassen. Den Richtpreis für Lieferung und Montage sehen Sie sofort, sobald Sie Ihren Standort eingeben.</p>
@@ -165,6 +166,7 @@
       <div class="container">
         <p id="application-context" class="context-note" hidden></p>
         <div class="result-line"><p id="result-count" aria-live="polite"></p><button id="clear-filters" type="button">Filter zurücksetzen</button></div>
+        <div class="product-groups" id="product-groups"></div>
         <div class="product-grid" id="product-grid"></div>
         <div class="empty-state" id="empty-state" hidden><h3>Kein Stück gefunden.</h3><p>Versuchen Sie einen anderen Begriff oder setzen Sie die Filter zurück.</p><button id="empty-reset" class="button" type="button">Alle Stücke anzeigen</button></div>
         <div class="more-wrap"><button class="button button-outline" id="load-more" type="button" hidden>Weitere Stücke anzeigen</button></div>
@@ -206,7 +208,7 @@
     <section class="band" id="showroom"><div class="container"><h2>Showroom Unterseen</h2></div></section>
     <section class="split">
       <div class="container split-grid">
-        <figure class="split-media reveal"><img src="assets/brand-hero.jpg" alt="Glaswaschtisch in der Ausstellung von Crea-Glass" width="1600" height="1067" loading="lazy"></figure>
+        <figure class="split-media reveal"><img data-parallax="0.08" src="assets/brand-hero.jpg" alt="Glaswaschtisch in der Ausstellung von Crea-Glass" width="1600" height="1067" loading="lazy"></figure>
         <div class="split-copy reveal">
           <p>Glas wirkt im echten Licht. Wie fühlt sich die Oberfläche an, wie wirkt die Struktur aus der Nähe, passen die Masse? Bringen Sie Ihre Merkliste, Raumfotos und Masse mit – so wird aus einer Idee eine Entscheidung.</p>
           <p class="address">Crea-Glass GmbH · Eichzun 4 · 3800 Unterseen b. Interlaken<br>Mo – Fr 8.00 – 12.00 / 13.30 – 17.00 Uhr<br>Termine ausserhalb der Öffnungszeiten nach Vereinbarung.</p>

@@ -286,22 +286,61 @@
     article.append(imageBox, body);
     return article;
   }
+  const groupedMode = () => category === 'Alle' && !application && !normalize(search.value).trim() && !priceMax.value && availability.value === 'available' && sort.value === 'featured';
+  const GROUP_PREVIEW = 4;
+  function renderGroups(list) {
+    const groups = $('#product-groups');
+    groups.replaceChildren();
+    let index = 0;
+    for (const name of categories.slice(1)) {
+      const items = list.filter(product => product.category === name);
+      if (!items.length) continue;
+      const section = node('section', 'group');
+      section.setAttribute('aria-label', name);
+      const head = node('div', 'group-head');
+      const title = node('h3', '', name); title.append(node('small', '', `${items.length} ${items.length === 1 ? 'Stück' : 'Stücke'}`));
+      const more = node('button', '', items.length > GROUP_PREVIEW ? `Alle ${items.length} ansehen` : 'Kategorie öffnen'); more.type = 'button';
+      more.addEventListener('click', () => { category = name; application = null; limit = 24; render(); $('#katalog').scrollIntoView({behavior: reducedMotion ? 'auto' : 'smooth'}); });
+      head.append(title, more);
+      const rows = node('div', 'product-grid');
+      items.slice(0, GROUP_PREVIEW).forEach(product => rows.append(card(product, index++)));
+      section.append(head, rows);
+      if (items.length > GROUP_PREVIEW) {
+        const foot = node('div', 'group-foot');
+        const rest = node('button', '', `+ ${items.length - GROUP_PREVIEW} weitere ${name}`); rest.type = 'button';
+        rest.addEventListener('click', () => { category = name; application = null; limit = 24; render(); section.scrollIntoView({behavior: reducedMotion ? 'auto' : 'smooth', block:'start'}); });
+        foot.append(rest); section.append(foot);
+      }
+      groups.append(section);
+    }
+    observeReveal(groups.querySelectorAll('.reveal'));
+  }
   function render() {
     renderCategories();
     const context = $('#application-context');
     context.hidden = !application;
     context.textContent = application ? `${application.title}: ${application.caption}. Filter zurücksetzen zeigt wieder alle Stücke.` : '';
     const list = filteredProducts();
-    $('#result-count').textContent = `${list.length} ${list.length === 1 ? 'Stück' : 'Stücke'}`;
+    const grouped = groupedMode();
     $('#empty-state').hidden = list.length > 0;
+    const more = $('#load-more');
+    if (grouped) {
+      $('#result-count').textContent = `${list.length} Stücke in ${categories.length - 1} Kategorien · je Kategorie die ersten ${GROUP_PREVIEW}, mehr über «Alle ansehen»`;
+      grid.replaceChildren(); grid.hidden = true; $('#product-groups').hidden = false;
+      renderGroups(list);
+      more.hidden = true;
+      return;
+    }
+    $('#product-groups').hidden = true; grid.hidden = false;
+    const label = application ? application.title : category !== 'Alle' ? category : 'Treffer';
+    $('#result-count').textContent = `${list.length} ${list.length === 1 ? 'Stück' : 'Stücke'} · ${label}`;
     const shown = list.slice(0, limit);
     const fragment = document.createDocumentFragment();
     shown.forEach((product, index) => fragment.append(card(product, index)));
     grid.replaceChildren(fragment);
     observeReveal(grid.querySelectorAll('.reveal'));
-    const more = $('#load-more');
     more.hidden = shown.length >= list.length;
-    more.textContent = `Weitere Stücke anzeigen (${list.length - shown.length})`;
+    more.textContent = `Weitere ${label === 'Treffer' ? 'Stücke' : label} anzeigen (${list.length - shown.length})`;
   }
   function clearFilters() {
     search.value = ''; availability.value = 'available'; sort.value = 'featured'; priceMax.value = '';
@@ -591,6 +630,28 @@
     const syncToolbar = () => { toolbar.style.top = header.classList.contains('sticky') ? `${header.offsetHeight}px` : '0px'; };
     syncToolbar(); window.addEventListener('scroll', syncToolbar, {passive:true}); window.addEventListener('resize', syncToolbar);
   }
+  function setupParallax() {
+    const items = [...document.querySelectorAll('[data-parallax]')].map(element => ({element, factor: Number(element.dataset.parallax) || 0}));
+    if (!items.length || reducedMotion) return;
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const vh = window.innerHeight;
+      for (const {element, factor} of items) {
+        const rect = (element.closest('.hero') || element.parentElement).getBoundingClientRect();
+        if (rect.bottom < -vh || rect.top > vh * 2) continue;
+        const center = rect.top + rect.height / 2 - vh / 2;
+        element.style.transform = element.classList.contains('hero-inner')
+          ? `translate3d(0, ${Math.max(0, -rect.top) * -factor}px, 0)`
+          : element.tagName === 'IMG' ? `translate3d(0, ${(-center * factor).toFixed(1)}px, 0) scale(1.12)` : `translate3d(0, ${(-rect.top * factor).toFixed(1)}px, 0)`;
+        if (element.classList.contains('hero-inner')) element.style.opacity = String(Math.max(0, 1 - Math.max(0, -rect.top) / (rect.height * 0.7)));
+      }
+    };
+    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', request, {passive:true});
+    window.addEventListener('resize', request);
+    update();
+  }
   function setupContactForm() {
     $('#contact-form').addEventListener('submit', event => {
       event.preventDefault();
@@ -613,6 +674,7 @@
   renderRooms();
   renderRecent();
   setupHeader();
+  setupParallax();
   setupContactForm();
   renderServiceSection();
   $('#visit-general').addEventListener('click', () => beginInquiry('visit'));
