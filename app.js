@@ -247,7 +247,7 @@
       ? `Guten Tag, ${product.code} ist verkauft. Haben Sie ein ähnliches Stück?`
       : `Guten Tag, ich interessiere mich für ${product.code} (${product.title}) aus dem Lagerverkauf November 2026. Bitte teilen Sie mir den aktuellen Preis und die Verfügbarkeit mit.`;
     $('#dialog-whatsapp').href = `https://wa.me/41794152056?text=${encodeURIComponent(inquiry)}`;
-    $('#dialog-email').href = `mailto:verkauf@crea.glass.ch?subject=${encodeURIComponent(`Anfrage ${product.code} – Lagerverkauf November 2026`)}&body=${encodeURIComponent(inquiry)}`;
+    $('#dialog-email').href = `mailto:verkauf@crea-glass.ch?subject=${encodeURIComponent(`Anfrage ${product.code} – Lagerverkauf November 2026`)}&body=${encodeURIComponent(inquiry)}`;
     $('#dialog-save').hidden = product.sold;
     updateShortlistUI();
     $('.dialog-contact p').textContent = product.sold ? 'Ähnliches Stück anfragen' : 'Mit diesem Artikelcode anfragen';
@@ -286,7 +286,7 @@
     $('#shortlist-whatsapp').textContent = visit ? 'Besuch per WhatsApp anfragen ↗' : 'Angebot per WhatsApp anfragen ↗';
     $('#shortlist-email').textContent = visit ? 'Besuch per E-Mail anfragen ↗' : 'Angebot per E-Mail anfragen ↗';
     $('#shortlist-whatsapp').href = `https://wa.me/41794152056?text=${encodeURIComponent(message)}`;
-    $('#shortlist-email').href = `mailto:verkauf@crea.glass.ch?subject=${encodeURIComponent(visit ? 'Showroom-Besuch – November 2026' : 'Angebot – November 2026')}&body=${encodeURIComponent(message)}`;
+    $('#shortlist-email').href = `mailto:verkauf@crea-glass.ch?subject=${encodeURIComponent(visit ? 'Showroom-Besuch – November 2026' : 'Angebot – November 2026')}&body=${encodeURIComponent(message)}`;
     $('#inquiry-explanation').textContent = visit ? 'Wir bestätigen Termin, Preis und Verfügbarkeit persönlich. Ihre Auswahl ist noch keine Reservierung oder Bestellung.' : 'Wir klären Preis, Masse und Lieferumfang mit Ihnen. Diese Anfrage löst noch keine Bestellung oder Zahlung aus.';
   }
 
