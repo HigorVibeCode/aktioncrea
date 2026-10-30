@@ -278,7 +278,7 @@
       cart.addEventListener('click', () => feedback(`${product.code} wird im Crea-Glass Shop in den Warenkorb gelegt`));
       actions.append(details, cart);
     } else {
-      const ask = node('button', 'button', 'Preis anfragen'); ask.type = 'button';
+      const ask = node('button', 'button', product.priceBasis === 'on_request' ? 'Preis anfragen' : 'Anfragen'); ask.type = 'button';
       ask.addEventListener('click', () => beginInquiry('pickup', product));
       actions.append(details, ask);
     }
@@ -325,7 +325,7 @@
     $('#empty-state').hidden = list.length > 0;
     const more = $('#load-more');
     if (grouped) {
-      $('#result-count').textContent = `${list.length} Stücke in ${categories.length - 1} Kategorien · je Kategorie die ersten ${GROUP_PREVIEW}, mehr über «Alle ansehen»`;
+      $('#result-count').textContent = `${list.length} Stücke in ${categories.length - 1} Kategorien. Pro Kategorie zeigen wir ${GROUP_PREVIEW} Stücke – «Alle ansehen» öffnet die ganze Kategorie.`;
       grid.replaceChildren(); grid.hidden = true; $('#product-groups').hidden = false;
       renderGroups(list);
       more.hidden = true;
@@ -405,6 +405,7 @@
     const cart = $('#dialog-cart');
     const url = cartUrl(product);
     cart.hidden = product.sold || !url;
+    $('#cart-note').hidden = cart.hidden;
     if (url) cart.href = url;
     $('#product-offer').hidden = product.sold;
     $('#product-offer').textContent = product.priceBasis === 'on_request' ? 'Offerte anfragen' : 'Lieferung & Montage anfragen';
@@ -624,8 +625,19 @@
     toggle.addEventListener('click', () => { const open = menu.hidden; menu.hidden = !open; toggle.setAttribute('aria-expanded', String(open)); update(); });
     menu.addEventListener('click', event => { if (event.target.closest('a')) { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); update(); } });
     for (const item of document.querySelectorAll('.nav-menu > li.has-sub > a')) {
-      item.addEventListener('click', event => { if (window.matchMedia('(hover: none)').matches && !item.parentElement.classList.contains('is-open')) { event.preventDefault(); item.parentElement.classList.add('is-open'); } });
+      item.addEventListener('click', event => {
+        const li = item.parentElement;
+        if (li.classList.contains('is-open')) return;
+        event.preventDefault();
+        for (const other of document.querySelectorAll('.nav-menu > li.is-open')) other.classList.remove('is-open');
+        li.classList.add('is-open');
+      });
     }
+    document.addEventListener('click', event => { if (!event.target.closest('.nav-menu')) for (const li of document.querySelectorAll('.nav-menu > li.is-open')) li.classList.remove('is-open'); });
+    const toTop = $('#to-top');
+    const toggleTop = () => toTop.classList.toggle('is-visible', window.scrollY > 900);
+    toggleTop(); window.addEventListener('scroll', toggleTop, {passive:true});
+    toTop.addEventListener('click', () => window.scrollTo({top:0, behavior: reducedMotion ? 'auto' : 'smooth'}));
     const toolbar = $('#toolbar');
     const syncToolbar = () => { toolbar.style.top = header.classList.contains('sticky') ? `${header.offsetHeight}px` : '0px'; };
     syncToolbar(); window.addEventListener('scroll', syncToolbar, {passive:true}); window.addEventListener('resize', syncToolbar);
