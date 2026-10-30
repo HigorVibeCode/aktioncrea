@@ -1,5 +1,8 @@
 (() => {
-  const products = window.CREA_CATALOG || [];
+  const productLabels = {'Glaswaschtische':'Glaswaschtisch','Tische & Möbel':'Möbel','Spiegel':'Spiegel','Glastrennwände':'Glastrennwand','Glastüren':'Glastür'};
+  const categoryOverrides = {'BA-06':'Glaswaschtische','BA-W':'Glaswaschtische','BA-05':'Glaswaschtische','BA-03':'Glaswaschtische','BA-M4':'Glaswaschtische','BA-RD':'Duschen','BA-ED':'Duschen','BA-FD':'Duschen','BA-SD':'Duschen','BA-D':'Glastüren','BA-P':'Glastüren','DIV 04':'Tische & Möbel'};
+  const products = (window.CREA_CATALOG || []).map(product => ({...product, category: categoryOverrides[product.code] || product.category, title: /^\d/.test(product.title) && productLabels[product.category] ? `${productLabels[product.category]} ${product.code}` : product.title}));
+  let feedbackTimer;
   const $ = selector => document.querySelector(selector);
   const grid = $('#product-grid');
   const search = $('#search');
@@ -15,7 +18,7 @@
     const stored = JSON.parse(localStorage.getItem(shortlistKey) || '[]');
     if (Array.isArray(stored)) shortlist = new Set(stored.filter(id => products.some(product => product.id === id && !product.sold)));
   } catch (_) { /* Private browsing can disable storage. The list still works for this visit. */ }
-  const categories = ['Alle', 'Neue Glasplatten', 'Glastrennwände', 'Glastüren', 'Glaswaschtische', 'Ausstellungsstücke', 'Duschen', 'Spiegel', 'Glasbilder', 'Tische & Möbel', 'Zubehör'];
+  const categories = ['Alle', 'Neue Glasplatten', 'Glastrennwände', 'Glastüren', 'Glaswaschtische', 'Duschen', 'Spiegel', 'Glasbilder', 'Tische & Möbel', 'Zubehör'];
   let category = 'Alle';
   let application = null;
   let limit = 24;
@@ -51,6 +54,8 @@
     else shortlist.add(product.id);
     saveShortlist();
     $('#selection-feedback').textContent = shortlist.has(product.id) ? `${product.code} im Anfragekorb` : `${product.code} entfernt`;
+    clearTimeout(feedbackTimer);
+    feedbackTimer = setTimeout(() => { $('#selection-feedback').textContent = ''; }, 3000);
   }
 
   function updateShortlistUI() {
