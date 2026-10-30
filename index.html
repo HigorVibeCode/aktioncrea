@@ -10,10 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261031-fundgrube-2">
-  <script src="catalog-data.js?v=20261031-fundgrube-2" defer></script>
-  <script src="services.js?v=20261031-fundgrube-2" defer></script>
-  <script src="app.js?v=20261031-fundgrube-2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261031-fundgrube-3">
+  <script src="catalog-data.js?v=20261031-fundgrube-3" defer></script>
+  <script src="services.js?v=20261031-fundgrube-3" defer></script>
+  <script src="app.js?v=20261031-fundgrube-3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#katalog">Zum Katalog springen</a>
@@ -100,7 +100,7 @@
           <li class="has-sub"><a href="https://crea-glass.ch/uber-uns/">Über uns <span class="caret" aria-hidden="true"></span></a><ul class="sub-menu"><li><a href="https://crea-glass.ch/uber-uns/">Über Crea Glass</a></li><li><a href="https://crea-glass.ch/uber-uns/unser-team/">Unser Team</a></li><li><a href="https://crea-glass.ch/kontakt/">Kontakt</a></li></ul></li>
         </ul>
       </nav>
-      <button class="wishlist-button" id="open-shortlist" type="button" aria-label="Merkliste öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.6 6.2 4.1c2-.3 3.9.6 5.8 2.7 1.9-2.1 3.8-3 5.8-2.7 3.6.5 5.3 4.3 3.8 7.7C19.5 16.4 12 21 12 21z"/></svg><span id="shortlist-count">0</span></button>
+      <button class="wishlist-button" id="open-shortlist" type="button" aria-label="Merkliste öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.6 6.2 4.1c2-.3 3.9.6 5.8 2.7 1.9-2.1 3.8-3 5.8-2.7 3.6.5 5.3 4.3 3.8 7.7C19.5 16.4 12 21 12 21z"/></svg><span class="wishlist-text">Merkliste</span><span class="count" id="shortlist-count">0</span></button>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menü umschalten"><span></span><span></span><span></span></button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation" hidden>
@@ -153,10 +153,10 @@
     <section class="rooms"><div class="container"><div class="room-grid" id="room-grid"></div></div></section>
 
     <section class="catalog" id="katalog" aria-labelledby="catalog-title">
-      <div class="band band-tight"><div class="container"><h2 id="catalog-title">Alle Einzelstücke</h2><p class="band-lead">Suchen, filtern, merken. Mit dem Herz sammeln Sie Stücke für Ihre Anfrage oder Ihren Besuch.</p></div></div>
+      <div class="band band-tight"><div class="container"><h2 id="catalog-title">Alle Einzelstücke</h2><p class="band-lead">Suchen, filtern, merken. Mit dem Herz sammeln Sie Stücke für Ihre Anfrage oder Ihren Besuch.</p><div class="notice"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 10.5v6M12 7.2v.1"/></svg><p><strong>Gut zu wissen.</strong> Alle Preise verstehen sich exkl. MwSt, gleich wie im Crea-Glass Shop. Jedes Stück gibt es nur einmal. Die Abholung in Unterseen ist kostenlos. Fragen? Rufen Sie uns an: <a href="tel:+41338212080">+41 33 821 20 80</a>.</p></div></div></div>
       <div class="toolbar" id="toolbar">
         <div class="container toolbar-row">
-          <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input id="search" type="search" placeholder="Suchen: Code, Produkt, Mass oder Farbe" autocomplete="off" aria-label="Katalog durchsuchen"></label>
+          <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input id="search" type="search" placeholder="Suchen: z. B. Lavabo, Spiegel oder LA 49" autocomplete="off" aria-label="Katalog durchsuchen"></label>
           <label class="select"><span>Preis</span><select id="price-max"><option value="">Alle Preise</option><option value="300">bis CHF 300</option><option value="1000">bis CHF 1'000</option><option value="3000">bis CHF 3'000</option></select></label>
           <label class="select"><span>Sortieren</span><select id="sort"><option value="featured">Empfohlen</option><option value="savings">Grösster Preisvorteil</option><option value="price-asc">Preis aufsteigend</option><option value="price-desc">Preis absteigend</option><option value="code">Artikelcode</option></select></label>
           <label class="select"><span>Status</span><select id="availability"><option value="available">Verfügbar</option><option value="all">Alle inkl. verkauft</option><option value="sold">Verkauft</option></select></label>
@@ -185,6 +185,7 @@
             <li><strong>Montage</strong><span>CHF <span data-tariff="rate"></span> pro Stunde, Team mit zwei Personen, Lieferung inbegriffen</span></li>
           </ul>
           <p class="small">Sanitär- und Elektroanschlüsse durch Ihren Installateur oder nach Absprache. Alle Beträge sind Richtpreise; wir bestätigen Preis, Umfang und Termin vor dem Auftrag.</p>
+          <p>Lieber persönlich? <a class="phone-link" href="tel:+41338212080">Telefon +41 33 821 20 80</a></p>
         </div>
         <div class="split-media reveal">
           <div class="calculator" id="service-calculator">
@@ -223,12 +224,14 @@
         <div class="contact-copy reveal">
           <h3>Wir freuen uns auf Ihre Nachricht</h3>
           <p>Fragen zu einem Stück, zu Lieferung oder Montage? Schreiben Sie uns oder nutzen Sie WhatsApp. Wir antworten persönlich.</p>
+          <a class="phone-link" href="tel:+41338212080">Telefon +41 33 821 20 80</a>
           <a class="whatsapp-link" href="https://wa.me/41794152056?text=Guten%20Tag%2C%20ich%20habe%20eine%20Frage%20zur%20Fundgrube." target="_blank" rel="noopener noreferrer">WhatsApp +41 79 415 20 56</a>
+          <a class="phone-link" href="mailto:verkauf@crea-glass.ch">E-Mail verkauf@crea-glass.ch</a>
         </div>
         <form class="contact-form reveal" id="contact-form">
-          <label><span class="sr-only">Name</span><input type="text" name="name" placeholder="Name" required></label>
-          <label><span class="sr-only">Email</span><input type="email" name="email" placeholder="Email" required></label>
-          <label><span class="sr-only">Nachricht</span><textarea name="message" rows="4" placeholder="Nachricht" required></textarea></label>
+          <label><span class="field-label">Ihr Name</span><input type="text" name="name" placeholder="Vorname und Name" autocomplete="name" required></label>
+          <label><span class="field-label">Ihre E-Mail-Adresse</span><input type="email" name="email" placeholder="name@beispiel.ch" autocomplete="email" required></label>
+          <label><span class="field-label">Ihre Nachricht</span><textarea name="message" rows="4" placeholder="Worum geht es? Gerne mit Artikelcode." required></textarea></label>
           <button class="button button-wide" type="submit">Senden</button>
           <p class="small">Der Versand öffnet Ihr E-Mail-Programm mit der Nachricht an verkauf@crea-glass.ch.</p>
         </form>
@@ -257,12 +260,13 @@
         <p id="dialog-code" class="code"></p>
         <div class="cta-block">
           <a id="dialog-cart" class="button button-dark" href="#" target="_blank" rel="noopener noreferrer">In den Warenkorb</a>
+          <p class="cta-note" id="cart-note">Öffnet den Crea-Glass Shop in einem neuen Fenster. Dort schliessen Sie den Kauf ab.</p>
           <button id="product-offer" type="button" class="button">Lieferung &amp; Montage anfragen</button>
           <button id="dialog-save" class="button button-outline" type="button">♡ Merken</button>
         </div>
         <div class="product-section"><h3>Produktbeschreibung</h3><p id="dialog-description"></p><div id="dialog-prices" class="price-rows"></div><p id="dialog-note" class="small"></p></div>
         <div class="product-section" id="dialog-service"></div>
-        <div class="product-section secondary-actions"><button id="product-visit" type="button" class="link-button">Dieses Stück im Showroom ansehen</button><button id="dialog-share" class="link-button" type="button">Link zu diesem Stück teilen</button><a id="dialog-whatsapp" class="link-button" href="#" target="_blank" rel="noopener noreferrer">Per WhatsApp fragen</a><a id="dialog-email" class="link-button" href="#">Per E-Mail fragen</a></div>
+        <div class="product-section secondary-actions"><button id="product-visit" type="button" class="link-button">Dieses Stück im Showroom ansehen</button><button id="dialog-share" class="link-button" type="button">Link zu diesem Stück teilen</button><a id="dialog-whatsapp" class="link-button" href="#" target="_blank" rel="noopener noreferrer">Per WhatsApp fragen</a><a id="dialog-email" class="link-button" href="#">Per E-Mail fragen</a><a class="link-button" href="tel:+41338212080">Anrufen: +41 33 821 20 80</a></div>
         <div class="product-pager"><button id="product-prev" type="button">← Vorheriges</button><span id="product-position"></span><button id="product-next" type="button">Nächstes →</button></div>
         <div id="related-products" class="related"></div>
       </div>
@@ -284,6 +288,7 @@
     <p class="small shop-hint">Direkt kaufen? Jedes Stück mit Shop-Preis lässt sich im Produkt mit «In den Warenkorb» in den Crea-Glass Shop legen.</p>
   </dialog>
   <dialog id="zoom-dialog" aria-label="Vergrössertes Produktbild"><button id="zoom-close" class="dialog-close" type="button" aria-label="Bild schliessen">×</button><img id="zoom-image" alt=""></dialog>
+  <button class="to-top" id="to-top" type="button" aria-label="Nach oben"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button>
   <p id="selection-feedback" role="status" class="toast"></p>
 </body>
 </html>
