@@ -1,12 +1,35 @@
-# Crea-Glass Lagerverkauf – November 2026
+# Crea-Glass Fundgrube – Einzelstücke aus der Ausstellung
 
-Statischer, responsiver Produktkatalog für den Lagerverkauf der Crea-Glass GmbH.
+Online-Showroom für den Ausstellungsverkauf der Crea-Glass GmbH, Unterseen. Die Seite ist als Erweiterung von crea-glass.ch gebaut: gleicher Kopfbereich mit dem offiziellen Menü, gleiche Schrift (Lato), gleiche Farben, gleiche Abschnittslogik (graue Bänder, Bilder, die ins Band ragen) und derselbe Fussbereich.
 
-- 121 Positionen mit quadratischen Produktbildern
-- 117 verfügbare Stücke und vier sichtbar als verkauft markierte Artikel
-- Fünf bestätigte Aktionspreise, historische Referenzpreise aus Mai 2025 und 20 Glasplatten mit Preis auf Anfrage
-- Suche, Kategorien, Verfügbarkeitsfilter und direkter Kontakt über WhatsApp, E-Mail oder Telefon
+- 121 Einzelstücke, neu und unbenutzt, mit Foto, Titel, Details und Preis
+- Preise wie im Crea-Glass Shop (Fundgrube); 85 Stücke lassen sich mit «In den Warenkorb» direkt in den offiziellen WooCommerce-Warenkorb legen
+- Aktion im November: die fünf Stücke mit dem grössten Preisvorteil, Preis durchgestrichen
+- Räume: sechs Bildkacheln, die den Katalog filtern
+- Katalog mit Suche, Preisfilter, Sortierung, Kategorien, Merkliste und «Zuletzt angesehen»
+- Produktansicht mit Preisaufschlüsselung, «Passt dazu», Lieferung und Montage, Link teilen
+- Lieferung & Montage: Standort eingeben, Zone und Richtpreis sofort; Richtpreis wandert in die Anfrage
+- Link pro Stück: `#artikel/<id>` oder `#artikel/<Artikelcode>` (für Inserate und Social Media)
+- Kontaktformular wie auf der Hauptseite (öffnet das E-Mail-Programm), Karte auf Klick
 
-Die verfügbaren Stücke werden nach Vereinbarung ab Werk in Eichzun 4, 3800 Unterseen abgeholt. Preis und Verfügbarkeit sollen vor der Abholung bestätigt werden.
+## Dateien
 
-Die Website besteht aus `index.html`, `styles.css`, `app.js`, `catalog-data.js` und `assets/`. Sie benötigt keinen Build-Schritt und kann als GitHub Pages Site direkt aus dem Hauptverzeichnis veröffentlicht werden.
+| Datei | Inhalt |
+| --- | --- |
+| `index.html` | Seitenaufbau, Menü der Hauptseite, Texte |
+| `styles.css` | Gestaltung nach crea-glass.ch |
+| `app.js` | Katalog, Highlights, Räume, Produktansicht, Merkliste, Anfrage, Warenkorb-Links |
+| `services.js` | Tarif für Lieferung und Montage, Zonen, Standortsuche, Distanz, Richtpreis |
+| `catalog-data.js` | Produktdaten inkl. Shop-Preis, Shop-Link und Shop-Produkt-ID |
+| `assets/crea-glass-logo.svg` | Offizielles Logo (SVG der Hauptseite) |
+| `docs/Preisvorschlag_November_2026.xlsx` | Interner Preisvorschlag, Tarif Lieferung & Montage, Montagezeiten, Shop-Abgleich |
+
+Keine Build-Schritte. Direkt als statische Seite veröffentlichen (GitHub Pages, Vercel, Subdomain).
+
+## Tarif anpassen
+
+Alle Beträge für Lieferung und Montage stehen in `services.js` im Objekt `TARIFF`, die Montagezeiten pro Produktgruppe in `INSTALL`. Dieselben Werte stehen im Arbeitsblatt «Annahmen» der Excel-Datei.
+
+## Preise aktualisieren
+
+Die Shop-Preise wurden am 30.10.2026 von crea-glass.ch/shop übernommen. Ändert der Shop Preise, muss `catalog-data.js` nachgeführt werden (Felder `displayPrice`, `shopRegular`, `shopUrl`, `shopId`).
