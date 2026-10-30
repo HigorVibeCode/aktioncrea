@@ -40,10 +40,9 @@
   function priceInfo(product) {
     if (product.sold) return {value:'Verkauft', caption:'Im Katalog dokumentiert'};
     if (product.priceBasis === 'on_request') return {value:'Preis auf Anfrage', caption:'Offerte nach Mass und Einsatz'};
-    return {
-      value:money(product.displayPrice),
-      caption:product.priceBasis === 'confirmed_november_2026' ? 'Aktionspreis November 2026' : 'Katalogpreis · aktuell bestätigen'
-    };
+    if (product.priceBasis === 'confirmed_november_2026') return {value:money(product.displayPrice), caption:'Aktionspreis November 2026 · exkl. MwSt'};
+    if (product.priceBasis === 'shop_current') return {value:money(product.displayPrice), caption:product.shopRegular ? `statt ${money(product.shopRegular)} · exkl. MwSt` : 'Aktueller Preis · exkl. MwSt'};
+    return {value:money(product.displayPrice), caption:'Katalogpreis · aktuell bestätigen'};
   }
 
   function node(tag, className, text) {
@@ -275,6 +274,7 @@
     if (product.sold) heading = 'Letzter Katalogpreis';
     else if (product.priceBasis === 'confirmed_november_2026') heading = 'Aktionspreis · November 2026';
     else if (product.priceBasis === 'on_request') heading = 'Preis auf Anfrage';
+    else if (product.priceBasis === 'shop_current') heading = product.shopRegular ? `Aktueller Preis · statt ${money(product.shopRegular)}` : 'Aktueller Preis';
     else heading = 'Katalogpreis';
     prices.append(node('p', 'dialog-price-title', heading));
     if (product.prices.length) {
@@ -290,7 +290,8 @@
     if (product.saleNote) notes.push(product.saleNote);
     if (product.sold) notes.push('Dieses Stück ist verkauft. Fragen Sie uns nach ähnlichen Artikeln oder einer Neuanfertigung.');
     else if (product.priceBasis === 'reference_may_2025') notes.push('Neu und unbenutzt, aus unserer Ausstellung. Richtwert aus dem Katalog (Stand 05/2025); den aktuellen Preis bestätigen wir mit Ihrer Anfrage.');
-    else if (product.priceBasis === 'confirmed_november_2026') notes.push('Neu und unbenutzt, aus unserer Ausstellung. Aktionspreis gültig im November 2026, solange verfügbar.');
+    else if (product.priceBasis === 'confirmed_november_2026') notes.push('Neu und unbenutzt, aus unserer Ausstellung. Aktionspreis gültig im November 2026, solange verfügbar. Preis exkl. MwSt.');
+    else if (product.priceBasis === 'shop_current') notes.push('Neu und unbenutzt, aus unserer Ausstellung. Preis wie im Crea-Glass Shop, exkl. MwSt. Besichtigung und Abholung in Unterseen, Lieferung und Montage siehe unten.');
     else notes.push('Neu und unbenutzt, aus unserer Ausstellung.');
     $('#dialog-note').textContent = notes.join(' ');
     renderDialogService(product);
@@ -300,6 +301,8 @@
     $('#dialog-whatsapp').href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(inquiry)}`;
     $('#dialog-email').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Anfrage ${product.code} – ${SALE}`)}&body=${encodeURIComponent(inquiry)}`;
     $('#dialog-save').hidden = product.sold;
+    $('#dialog-shop').href = product.shopUrl || 'https://crea-glass.ch/shop/';
+    $('#dialog-shop').hidden = product.sold || !product.shopUrl;
     updateShortlistUI();
     $('.dialog-contact p').textContent = product.sold ? 'Ähnliches Stück anfragen' : 'Mit diesem Artikelcode anfragen';
     updateProductNavigation(product);
