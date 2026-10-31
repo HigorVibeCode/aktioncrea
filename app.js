@@ -632,16 +632,21 @@
     window.addEventListener('scroll', update, {passive:true});
     toggle.addEventListener('click', () => { const open = menu.hidden; menu.hidden = !open; toggle.setAttribute('aria-expanded', String(open)); update(); });
     menu.addEventListener('click', event => { if (event.target.closest('a')) { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); update(); } });
-    for (const item of document.querySelectorAll('.nav-menu > li.has-sub > a')) {
-      item.addEventListener('click', event => {
-        const li = item.parentElement;
-        if (li.classList.contains('is-open')) return;
-        event.preventDefault();
-        for (const other of document.querySelectorAll('.nav-menu > li.is-open')) other.classList.remove('is-open');
-        li.classList.add('is-open');
-      });
+    const links = [...document.querySelectorAll('.nav-menu a[data-section]')];
+    const sections = {katalog: $('#katalog'), service: $('#service'), showroom: $('#showroom'), kontakt: $('#kontakt')};
+    if ('IntersectionObserver' in window) {
+      const sectionObserver = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((x, y) => y.intersectionRatio - x.intersectionRatio)[0];
+        if (!visible) return;
+        for (const link of links) { if (sections[link.dataset.section] === visible.target || (link.dataset.section === 'katalog' && visible.target.id === 'katalog')) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current'); }
+      }, {rootMargin: '-30% 0px -60% 0px', threshold: [0, 0.05]});
+      Object.values(sections).forEach(section => section && sectionObserver.observe(section));
     }
-    document.addEventListener('click', event => { if (!event.target.closest('.nav-menu')) for (const li of document.querySelectorAll('.nav-menu > li.is-open')) li.classList.remove('is-open'); });
+    const exitDialog = $('#exit-dialog');
+    for (const button of document.querySelectorAll('#exit-button, [data-exit]')) button.addEventListener('click', () => { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); update(); exitDialog.showModal(); });
+    $('#exit-cancel').addEventListener('click', () => exitDialog.close());
+    exitDialog.addEventListener('click', event => { if (event.target === exitDialog) exitDialog.close(); });
+    $('#mobile-shortlist-link').addEventListener('click', event => { event.preventDefault(); menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); update(); openShortlist(); });
     const toTop = $('#to-top');
     const toggleTop = () => toTop.classList.toggle('is-visible', window.scrollY > 900);
     toggleTop(); window.addEventListener('scroll', toggleTop, {passive:true});

@@ -10,17 +10,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261031-fundgrube-4">
-  <script src="catalog-data.js?v=20261031-fundgrube-4" defer></script>
-  <script src="services.js?v=20261031-fundgrube-4" defer></script>
-  <script src="app.js?v=20261031-fundgrube-4" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261031-fundgrube-5">
+  <script src="catalog-data.js?v=20261031-fundgrube-5" defer></script>
+  <script src="services.js?v=20261031-fundgrube-5" defer></script>
+  <script src="app.js?v=20261031-fundgrube-5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#katalog">Zum Katalog springen</a>
 
   <header id="header7" class="site-header transparent">
     <div class="container header-row">
-      <a class="brand" href="https://crea-glass.ch/" aria-label="Crea-Glass – zur Hauptseite"><svg class="logo" role="img" aria-label="Crea-Glass Glasmanufaktur" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 770 282.5">
+      <a class="brand" href="#start" aria-label="Crea-Glass Fundgrube – zum Seitenanfang"><svg class="logo" role="img" aria-label="Crea-Glass Glasmanufaktur" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 770 282.5">
   <defs>
     
     <linearGradient class="gradient7" id="gradient7" data-name="gradient7" x1="7.05" y1="257.5" x2="754.35" y2="257.5" gradientTransform="translate(0 -116)" gradientUnits="userSpaceOnUse">
@@ -89,31 +89,28 @@
     <path class="cls-7" d="M639.118,225.765h-2.339v-17.998h2.339v2.088c.648-1.439,1.872-2.34,3.456-2.34,.468,0,.936,.072,1.26,.216v2.196c-.324-.18-.864-.252-1.368-.252-1.439,0-2.663,.972-3.348,2.88v13.21Z"/>
   </g>
 </svg></a>
-      <nav class="main-nav" aria-label="Hauptnavigation">
+      <nav class="main-nav" aria-label="Fundgrube Navigation">
         <ul class="nav-menu">
-          <li class="has-sub"><a href="https://crea-glass.ch/produkte/">Produkte <span class="caret" aria-hidden="true"></span></a><ul class="sub-menu"><li><a href="https://crea-glass.ch/produkte/badezimmer/">Badezimmer/Dusche</a></li><li><a href="https://crea-glass.ch/produkte/kuechen/">Küchenrückwände</a></li><li><a href="https://crea-glass.ch/produkte/treppen/">Treppentritte/Treppengeländer</a></li><li><a href="https://crea-glass.ch/produkte/tueren/">Türen</a></li><li><a href="https://crea-glass.ch/produkte/wohnraum/">Tische, Möbel</a></li><li><a href="https://crea-glass.ch/produkte/glastheken/">Theken</a></li><li><a href="https://crea-glass.ch/produkte/photovoltaik/">Ästhetik trifft Solarmodule</a></li><li><a href="https://crea-glass.ch/produkte/glasbilder/">Relief in Glas</a></li><li><a href="https://crea-glass.ch/produkte/prospekte/">Prospekte</a></li></ul></li>
-          <li class="has-sub"><a href="https://crea-glass.ch/uber-uns/was-wir-bieten/">Dienstleistungen <span class="caret" aria-hidden="true"></span></a><ul class="sub-menu"><li><a href="https://crea-glass.ch/uber-uns/was-wir-bieten/">Was wir bieten</a></li><li><a href="https://crea-glass.ch/uber-uns/produktion-planung-montage/">Produktion, Planung &amp; Montage</a></li></ul></li>
-          <li><a href="https://crea-glass.ch/showrooms/">Showrooms</a></li>
-          <li><a href="https://crea-glass.ch/news/">News</a></li>
-          <li><a href="https://crea-glass.ch/messen/">Messen</a></li>
-          <li class="has-sub is-active"><a href="#start" aria-current="page">Fundgrube <span class="caret" aria-hidden="true"></span></a><ul class="sub-menu"><li><a href="#katalog">Einzelstücke aus der Ausstellung</a></li><li><a href="#service">Lieferung &amp; Montage</a></li><li><a href="https://crea-glass.ch/shop/">Warenkorb im Shop</a></li><li><a href="https://crea-glass.ch/wp-content/uploads/2025/05/Lagerabverkauf_Mai_2025-1.pdf" target="_blank" rel="noopener noreferrer">Lagerabverkauf (PDF)</a></li></ul></li>
-          <li class="has-sub"><a href="https://crea-glass.ch/uber-uns/">Über uns <span class="caret" aria-hidden="true"></span></a><ul class="sub-menu"><li><a href="https://crea-glass.ch/uber-uns/">Über Crea Glass</a></li><li><a href="https://crea-glass.ch/uber-uns/unser-team/">Unser Team</a></li><li><a href="https://crea-glass.ch/kontakt/">Kontakt</a></li></ul></li>
+          <li><a href="#toolbar" data-section="katalog">Einzelstücke</a></li>
+          <li><a href="#service" data-section="service">Lieferung &amp; Montage</a></li>
+          <li><a href="#showroom" data-section="showroom">Showroom</a></li>
+          <li><a href="#kontakt" data-section="kontakt">Kontakt</a></li>
         </ul>
       </nav>
+      <button class="exit-button" id="exit-button" type="button" title="Fundgrube verlassen und zur Hauptseite crea-glass.ch wechseln"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H5v16h5M14 8l4 4-4 4M18 12H9"/></svg><span>Zur Hauptseite</span></button>
       <button class="wishlist-button" id="open-shortlist" type="button" aria-label="Merkliste öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.6 4.6 6.2 4.1c2-.3 3.9.6 5.8 2.7 1.9-2.1 3.8-3 5.8-2.7 3.6.5 5.3 4.3 3.8 7.7C19.5 16.4 12 21 12 21z"/></svg><span class="wishlist-text">Merkliste</span><span class="count" id="shortlist-count">0</span></button>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menü umschalten"><span></span><span></span><span></span></button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation" hidden>
+      <p class="mobile-menu-title">Fundgrube · Online-Showroom von Crea-Glass</p>
       <ul>
-        <li><a href="https://crea-glass.ch/produkte/">Produkte</a></li>
-        <li><a href="https://crea-glass.ch/uber-uns/was-wir-bieten/">Dienstleistungen</a></li>
-        <li><a href="https://crea-glass.ch/showrooms/">Showrooms</a></li>
-        <li><a href="https://crea-glass.ch/news/">News</a></li>
-        <li><a href="https://crea-glass.ch/messen/">Messen</a></li>
-        <li class="is-active"><a href="#katalog">Fundgrube</a><ul><li><a href="#katalog">Einzelstücke aus der Ausstellung</a></li><li><a href="#service">Lieferung &amp; Montage</a></li><li><a href="#showroom">Showroom</a></li><li><a href="https://crea-glass.ch/shop/">Warenkorb im Shop</a></li></ul></li>
-        <li><a href="https://crea-glass.ch/uber-uns/">Über uns</a></li>
-        <li><a href="https://crea-glass.ch/kontakt/">Kontakt</a></li>
+        <li><a href="#toolbar">Einzelstücke</a></li>
+        <li><a href="#service">Lieferung &amp; Montage</a></li>
+        <li><a href="#showroom">Showroom</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#start" class="mobile-shortlist-link" id="mobile-shortlist-link">Merkliste</a></li>
       </ul>
+      <button class="exit-button exit-button-mobile" type="button" data-exit><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H5v16h5M14 8l4 4-4 4M18 12H9"/></svg><span>Zur Hauptseite crea-glass.ch</span></button>
     </nav>
   </header>
 
@@ -257,7 +254,7 @@
     <div class="product-layout">
       <div class="product-media"><button id="image-zoom" class="image-zoom" type="button" aria-label="Produktbild vergrössern"><img id="dialog-image" src="" alt=""></button><div id="dialog-badges" class="badges"></div></div>
       <div class="product-info">
-        <p class="crumbs"><a href="https://crea-glass.ch/">Start</a> / <a href="#katalog">Fundgrube</a> / <span id="dialog-category"></span></p>
+        <p class="crumbs"><a href="#start">Fundgrube</a> / <a href="#toolbar">Einzelstücke</a> / <span id="dialog-category"></span></p>
         <h2 id="dialog-title"></h2>
         <p id="dialog-tagline" class="tagline"></p>
         <div class="price-block"><strong id="dialog-price"></strong><s id="dialog-regular" hidden></s><span id="dialog-price-caption"></span></div>
@@ -290,6 +287,11 @@
     <p class="small" id="inquiry-explanation"></p>
     <div class="shortlist-actions"><a id="shortlist-whatsapp" class="button" href="#" target="_blank" rel="noopener noreferrer">Per WhatsApp anfragen</a><a id="shortlist-email" class="button button-outline" href="#">Per E-Mail anfragen</a></div>
     <p class="small shop-hint">Direkt kaufen? Jedes Stück mit Shop-Preis lässt sich im Produkt mit «In den Warenkorb» in den Crea-Glass Shop legen.</p>
+  </dialog>
+  <dialog id="exit-dialog" aria-labelledby="exit-title">
+    <h2 id="exit-title">Fundgrube verlassen?</h2>
+    <p>Sie wechseln zur Hauptseite <strong>crea-glass.ch</strong> mit Produkten, Dienstleistungen und Referenzen. Ihre Merkliste bleibt auf diesem Gerät gespeichert.</p>
+    <div class="exit-actions"><a class="button" id="exit-confirm" href="https://crea-glass.ch/">Ja, zur Hauptseite</a><button class="button button-outline" id="exit-cancel" type="button">Hier bleiben</button></div>
   </dialog>
   <dialog id="zoom-dialog" aria-label="Vergrössertes Produktbild"><button id="zoom-close" class="dialog-close" type="button" aria-label="Bild schliessen">×</button><img id="zoom-image" alt=""></dialog>
   <button class="to-top" id="to-top" type="button" aria-label="Nach oben"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button>
