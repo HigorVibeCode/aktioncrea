@@ -20,7 +20,7 @@ d.text((60,228),'FUNDGRUBE · AUSSTELLUNGSVERKAUF',font=font(22),fill=(255,205,1
 d.text((60,268),'Einzelstücke aus Glas',font=font(76),fill='white')
 d.text((60,362),'Neu und unbenutzt, aus unserer Ausstellung',font=font(30,False),fill=(238,238,238))
 d.text((60,402),'in Unterseen bei Interlaken',font=font(30,False),fill=(238,238,238))
-t='Bis −87 % · ab CHF 40.–'; f=font(30); tw=d.textlength(t,font=f); bx,by=60,478; bw=int(tw+48)
+t='Bis zu 87 % reduziert'; f=font(30); tw=d.textlength(t,font=f); bx,by=60,478; bw=int(tw+48)
 d.rectangle([bx,by,bx+bw,by+70],fill=(214,63,32)); d.text((bx+24,by+18),t,font=f,fill='white')
 d.text((bx+bw+26,by+22),'Abholen · liefern · montieren lassen',font=font(24,False),fill=(228,228,228))
 img.save('assets/og-fundgrube.jpg',quality=84,optimize=True,progressive=True)
