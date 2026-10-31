@@ -33,3 +33,11 @@ Alle Beträge für Lieferung und Montage stehen in `services.js` im Objekt `TARI
 ## Preise aktualisieren
 
 Die Shop-Preise wurden am 30.10.2026 von crea-glass.ch/shop übernommen. Ändert der Shop Preise, muss `catalog-data.js` nachgeführt werden (Felder `displayPrice`, `shopRegular`, `shopUrl`, `shopId`).
+
+## Link teilen (WhatsApp, Facebook, LinkedIn)
+
+Die Seite liefert Open-Graph-Tags und ein Vorschaubild `assets/og-fundgrube.jpg` (1200 × 630 px, ca. 90 KB). WhatsApp zeigt damit Bild, Titel «Fundgrube – Einzelstücke aus Glas | Crea-Glass» und die Beschreibung.
+
+- Die Adresse steht fest in `index.html` (`og:url`, `og:image`, `canonical`). Wechselt die Domain, diese drei Zeilen anpassen.
+- WhatsApp und Facebook speichern die Vorschau einige Tage. Nach einer Änderung hilft: Link mit Zusatz teilen, z. B. `https://aktioncrea.vercel.app/?v=2`, oder die Vorschau bei Facebook neu laden: https://developers.facebook.com/tools/debug/
+- Vorschaubild neu bauen: Skript in `docs/og-image.py` (nutzt Foto, Logo und Text).

@@ -1,0 +1,26 @@
+"""Baut assets/og-fundgrube.jpg (1200x630) aus Foto, Logo und Text. Aufruf: python3 docs/og-image.py
+Das Logo wird vorher mit Playwright aus assets/crea-glass-logo.svg gerendert (siehe README)."""
+from PIL import Image, ImageDraw, ImageFont
+W,H=1200,630
+hero=Image.open('assets/brand-hero.jpg').convert('RGB')
+r=max(W/hero.width,H/hero.height); hero=hero.resize((int(hero.width*r),int(hero.height*r)))
+x=(hero.width-W)//2; y=int((hero.height-H)*0.45); img=hero.crop((x,y,x+W,y+H))
+dark=Image.new('RGB',(W,H),(12,12,12))
+m=Image.new('L',(W,H),0); md=ImageDraw.Draw(m)
+for i in range(W): md.line([(i,0),(i,H)],fill=int(max(0,min(255,245-(i/W)*300))))
+img=Image.composite(dark,img,m.point(lambda v:int(v*0.88)))
+m2=Image.new('L',(W,H),0); md2=ImageDraw.Draw(m2)
+for j in range(H): md2.line([(0,j),(W,j)],fill=int(max(0,(j-330)/300*190)))
+img=Image.composite(dark,img,m2)
+d=ImageDraw.Draw(img)
+font=lambda sz,bold=True: ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf' if bold else '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',sz)
+logo=Image.open('assets/og-logo.png').convert('RGBA'); logo=logo.crop(logo.getbbox())
+lw=330; logo=logo.resize((lw,int(logo.height*lw/logo.width)),Image.LANCZOS); img.paste(logo,(60,52),logo)
+d.text((60,228),'FUNDGRUBE · AUSSTELLUNGSVERKAUF',font=font(22),fill=(255,205,190))
+d.text((60,268),'Einzelstücke aus Glas',font=font(76),fill='white')
+d.text((60,362),'Neu und unbenutzt, aus unserer Ausstellung',font=font(30,False),fill=(238,238,238))
+d.text((60,402),'in Unterseen bei Interlaken',font=font(30,False),fill=(238,238,238))
+t='Bis −87 % · ab CHF 40.–'; f=font(30); tw=d.textlength(t,font=f); bx,by=60,478; bw=int(tw+48)
+d.rectangle([bx,by,bx+bw,by+70],fill=(214,63,32)); d.text((bx+24,by+18),t,font=f,fill='white')
+d.text((bx+bw+26,by+22),'Abholen · liefern · montieren lassen',font=font(24,False),fill=(228,228,228))
+img.save('assets/og-fundgrube.jpg',quality=84,optimize=True,progressive=True)
