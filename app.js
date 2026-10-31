@@ -192,7 +192,7 @@
       const copy = node('div', 'copy');
       copy.append(node('strong', '', room.title), node('span', '', `${room.caption} · ${count} Stücke`), node('span', 'go', 'Entdecken'));
       tile.append(copy);
-      tile.addEventListener('click', () => { category = 'Alle'; application = room; search.value = ''; availability.value = 'available'; priceMax.value = ''; limit = 24; render(); $('#katalog').scrollIntoView({behavior: reducedMotion ? 'auto' : 'smooth'}); });
+      tile.addEventListener('click', () => { category = 'Alle'; application = room; search.value = ''; availability.value = 'available'; priceMax.value = ''; limit = 24; render(); $('#toolbar').scrollIntoView({behavior: reducedMotion ? 'auto' : 'smooth'}); });
       container.append(tile);
     }
   }
@@ -287,7 +287,7 @@
     return article;
   }
   const groupedMode = () => category === 'Alle' && !application && !normalize(search.value).trim() && !priceMax.value && availability.value === 'available' && sort.value === 'featured';
-  const GROUP_PREVIEW = 4;
+  const groupPreview = () => window.matchMedia('(max-width: 640px)').matches ? 2 : 4;
   function renderGroups(list) {
     const groups = $('#product-groups');
     groups.replaceChildren();
@@ -299,15 +299,15 @@
       section.setAttribute('aria-label', name);
       const head = node('div', 'group-head');
       const title = node('h3', '', name); title.append(node('small', '', `${items.length} ${items.length === 1 ? 'Stück' : 'Stücke'}`));
-      const more = node('button', '', items.length > GROUP_PREVIEW ? `Alle ${items.length} ansehen` : 'Kategorie öffnen'); more.type = 'button';
-      more.addEventListener('click', () => { category = name; application = null; limit = 24; render(); $('#katalog').scrollIntoView({behavior: reducedMotion ? 'auto' : 'smooth'}); });
+      const more = node('button', '', items.length > groupPreview() ? `Alle ${items.length} ansehen` : 'Kategorie öffnen'); more.type = 'button';
+      more.addEventListener('click', () => { category = name; application = null; limit = 24; render(); $('#toolbar').scrollIntoView({behavior: reducedMotion ? 'auto' : 'smooth'}); });
       head.append(title, more);
       const rows = node('div', 'product-grid');
-      items.slice(0, GROUP_PREVIEW).forEach(product => rows.append(card(product, index++)));
+      items.slice(0, groupPreview()).forEach(product => rows.append(card(product, index++)));
       section.append(head, rows);
-      if (items.length > GROUP_PREVIEW) {
+      if (items.length > groupPreview()) {
         const foot = node('div', 'group-foot');
-        const rest = node('button', '', `+ ${items.length - GROUP_PREVIEW} weitere ${name}`); rest.type = 'button';
+        const rest = node('button', '', `+ ${items.length - groupPreview()} weitere ${name}`); rest.type = 'button';
         rest.addEventListener('click', () => { category = name; application = null; limit = 24; render(); section.scrollIntoView({behavior: reducedMotion ? 'auto' : 'smooth', block:'start'}); });
         foot.append(rest); section.append(foot);
       }
@@ -325,13 +325,14 @@
     $('#empty-state').hidden = list.length > 0;
     const more = $('#load-more');
     if (grouped) {
-      $('#result-count').textContent = `${list.length} Stücke in ${categories.length - 1} Kategorien. Pro Kategorie zeigen wir ${GROUP_PREVIEW} Stücke – «Alle ansehen» öffnet die ganze Kategorie.`;
+      $('#result-count').replaceChildren(node('span', '', `${list.length} Stücke in ${categories.length - 1} Kategorien.`), node('span', 'count-long', ` Pro Kategorie zeigen wir ${groupPreview()} Stücke – «Alle ansehen» öffnet die ganze Kategorie.`));
+      $('#clear-filters').hidden = true;
       grid.replaceChildren(); grid.hidden = true; $('#product-groups').hidden = false;
       renderGroups(list);
       more.hidden = true;
       return;
     }
-    $('#product-groups').hidden = true; grid.hidden = false;
+    $('#product-groups').hidden = true; grid.hidden = false; $('#clear-filters').hidden = false;
     const label = application ? application.title : category !== 'Alle' ? category : 'Treffer';
     $('#result-count').textContent = `${list.length} ${list.length === 1 ? 'Stück' : 'Stücke'} · ${label}`;
     const shown = list.slice(0, limit);
@@ -638,6 +639,8 @@
     const toggleTop = () => toTop.classList.toggle('is-visible', window.scrollY > 900);
     toggleTop(); window.addEventListener('scroll', toggleTop, {passive:true});
     toTop.addEventListener('click', () => window.scrollTo({top:0, behavior: reducedMotion ? 'auto' : 'smooth'}));
+    const filterToggle = $('#filter-toggle'); const filterPanel = $('#filter-panel');
+    filterToggle.addEventListener('click', () => { const open = filterPanel.classList.toggle('is-open'); filterToggle.setAttribute('aria-expanded', String(open)); });
     const toolbar = $('#toolbar');
     const syncToolbar = () => { toolbar.style.top = header.classList.contains('sticky') ? `${header.offsetHeight}px` : '0px'; };
     syncToolbar(); window.addEventListener('scroll', syncToolbar, {passive:true}); window.addEventListener('resize', syncToolbar);
@@ -720,6 +723,8 @@
   observeReveal(document.querySelectorAll('.reveal'));
   updateShortlistUI();
   render();
+  let lastPreview = groupPreview();
+  window.addEventListener('resize', () => { if (groupPreview() !== lastPreview) { lastPreview = groupPreview(); if (groupedMode()) render(); } });
   const initial = productFromLocation();
   if (initial) openProduct(initial, {fromLocation:true});
 })();
