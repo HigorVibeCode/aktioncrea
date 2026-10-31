@@ -427,6 +427,7 @@
     if (!fromLocation) setProductHash(product);
     if (!dialog.open) dialog.showModal();
     dialog.scrollTop = 0;
+    $('#mobile-cta').classList.remove('is-visible');
     rememberRecent(product);
   }
   function renderDialogService(product) {
@@ -614,6 +615,12 @@
     catch (error) { describeStatus(status, error); }
   }
 
+  /* Mobile Kaufleiste erst zeigen, wenn die Hauptbuttons aus dem Bild sind */
+  if ('IntersectionObserver' in window) {
+    const ctaObserver = new IntersectionObserver(entries => { for (const entry of entries) $('#mobile-cta').classList.toggle('is-visible', !entry.isIntersecting && dialog.open); }, {root: dialog, threshold: 0});
+    ctaObserver.observe(document.querySelector('.cta-block'));
+  } else $('#mobile-cta').classList.add('is-visible');
+
   /* ---------- Header, Menü, Bewegung ---------- */
   const revealObserver = ('IntersectionObserver' in window && !reducedMotion) ? new IntersectionObserver(entries => { for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObserver.unobserve(entry.target); } }, {rootMargin:'0px 0px -8% 0px', threshold:0.08}) : null;
   function observeReveal(elements) { for (const element of elements) { if (!revealObserver) element.classList.add('in-view'); else revealObserver.observe(element); } }
@@ -694,7 +701,7 @@
   renderServiceSection();
   $('#visit-general').addEventListener('click', () => beginInquiry('visit'));
   $('#product-visit').addEventListener('click', () => beginInquiry('visit', activeProduct));
-  $('#product-offer').addEventListener('click', () => beginInquiry(activeProduct && activeProduct.priceBasis === 'on_request' ? 'pickup' : (location ? 'install' : 'delivery'), activeProduct));
+  $('#product-offer').addEventListener('click', () => beginInquiry(activeProduct && activeProduct.priceBasis === 'on_request' ? 'pickup' : 'install', activeProduct));
   $('#dialog-share').addEventListener('click', shareProduct);
   $('#dialog-cart').addEventListener('click', () => { if (activeProduct) feedback(`${activeProduct.code} wird im Crea-Glass Shop in den Warenkorb gelegt`); });
   for (const id of ['inquiry-purpose','inquiry-project','inquiry-time']) $('#'+id).addEventListener('input', updateInquiryLinks);
