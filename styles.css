@@ -57,9 +57,9 @@ p{margin:0 0 16px}
 .nav-menu>li>a:after{content:"";position:absolute;left:0;right:0;bottom:8px;height:3px;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
 .sticky .nav-menu>li>a:after{background:var(--dark)}
 .nav-menu>li:hover>a:after,.nav-menu>li>a:focus-visible:after{transform:scaleX(1)}
-.nav-menu>li.is-active>a{color:#fff}
-.sticky .nav-menu>li.is-active>a{color:var(--orange-text)}
-.nav-menu>li.is-active>a:after{transform:scaleX(1);background:var(--orange-hot)}
+.nav-menu>li>a[aria-current=page]{color:#fff}
+.sticky .nav-menu>li>a[aria-current=page]{color:var(--orange-text)}
+.nav-menu>li>a[aria-current=page]:after{transform:scaleX(1);background:var(--orange-hot)}
 .caret{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;margin-top:2px}
 .sub-menu{list-style:none;margin:0;padding:6px 0;position:absolute;top:100%;left:-20px;min-width:240px;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s,transform .25s,visibility .25s;z-index:5}
 .nav-menu>li:hover>.sub-menu,.nav-menu>li:focus-within>.sub-menu,.nav-menu>li.is-open>.sub-menu{opacity:1;visibility:visible;transform:none}
@@ -82,6 +82,21 @@ p{margin:0 0 16px}
 .mobile-menu li ul{padding:0 0 6px}
 .mobile-menu li ul a{padding:10px 24px 10px 40px;font-size:15px;border:0;color:var(--soft)}
 
+/* Ausgang zur Hauptseite + Dialog */
+.exit-button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:9px 14px;border:1px solid rgba(255,255,255,.75);background:rgba(0,0,0,.18);color:#fff;font-size:14px;font-weight:700;white-space:nowrap;transition:background .25s,color .25s,border-color .25s}
+.exit-button svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2}
+.exit-button:hover{background:#fff;color:var(--dark)}
+.sticky .exit-button{border-color:#bdbdbd;background:#fff;color:var(--dark)}
+.sticky .exit-button:hover{background:var(--dark);border-color:var(--dark);color:#fff}
+.exit-button-mobile{margin:10px 24px 18px;width:calc(100% - 48px);justify-content:center;border-color:#bdbdbd;background:#fff;color:var(--dark)}
+.mobile-menu-title{margin:0;padding:14px 24px 4px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+#exit-dialog{width:min(480px,calc(100vw - 32px));padding:32px 28px}
+#exit-dialog h2{font-size:28px;margin-bottom:12px}
+#exit-dialog p{font-size:17px;line-height:1.55;margin-bottom:24px}
+.exit-actions{display:grid;gap:10px}
+.exit-actions .button{min-height:50px;font-size:16px}
+.main-nav{margin-left:auto}
+.nav-menu>li>a{font-size:17px}
 /* Hero (wie Startseite: Bild, dunkle Überlagerung, zentrierter Titel in Grossbuchstaben) */
 .hero{position:relative;min-height:min(100vh,909px);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background:#111;padding:140px 24px 90px;overflow:hidden}
 .hero-bg{position:absolute;left:0;right:0;top:-18%;bottom:-18%;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.35) 45%,rgba(0,0,0,.55)),url('assets/brand-hero.jpg') center 45%/cover no-repeat;will-change:transform}
@@ -386,7 +401,7 @@ dialog[open]{animation:dialog-in .32s var(--ease)}
 /* Responsiv */
 @media(max-width:1180px){.nav-menu{gap:20px}.nav-menu>li>a{font-size:16px}.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.highlight-grid{grid-template-columns:repeat(2,1fr)}.highlight:first-child{grid-column:span 2;grid-row:span 1;min-height:360px}}
 @media(max-width:960px){
-  .main-nav{display:none}.menu-toggle{display:flex;margin-left:auto}.wishlist-button{margin-left:auto}.wishlist-button .wishlist-text{display:none}.menu-toggle{margin-left:0}
+  .main-nav{display:none}#exit-button{display:none}.menu-toggle{display:flex;margin-left:auto}.wishlist-button{margin-left:auto}.wishlist-button .wishlist-text{display:none}.menu-toggle{margin-left:0}
   .site-header:not(.sticky) .mobile-menu{color:var(--ink)}
   h2{font-size:38px}.band{padding:60px 0 90px}.band-tight{padding:56px 0 44px}
   .split-grid,.split-reverse .split-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.split-reverse .split-media{order:0}.split-media{margin-top:-50px}.split-copy{padding-top:0}.split-copy:before{margin-bottom:26px}
