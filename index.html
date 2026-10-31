@@ -10,10 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261031-fundgrube-3">
-  <script src="catalog-data.js?v=20261031-fundgrube-3" defer></script>
-  <script src="services.js?v=20261031-fundgrube-3" defer></script>
-  <script src="app.js?v=20261031-fundgrube-3" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261031-fundgrube-4">
+  <script src="catalog-data.js?v=20261031-fundgrube-4" defer></script>
+  <script src="services.js?v=20261031-fundgrube-4" defer></script>
+  <script src="app.js?v=20261031-fundgrube-4" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#katalog">Zum Katalog springen</a>
@@ -124,7 +124,7 @@
         <p class="hero-kicker">Fundgrube · Ausstellungsverkauf</p>
         <h1 id="hero-title">Einzelstücke aus Glas</h1>
         <p class="hero-sub">Neu, unbenutzt und sofort verfügbar. <span id="hero-count">117</span> Stücke aus unserer Ausstellung in Unterseen – jedes nur einmal.</p>
-        <div class="hero-actions"><a class="button" href="#katalog">Stücke entdecken</a><a class="button button-ghost" href="#service">Lieferung &amp; Montage</a></div>
+        <div class="hero-actions"><a class="button" href="#toolbar">Stücke entdecken</a><a class="button button-ghost" href="#service">Lieferung &amp; Montage</a></div>
       </div>
       <a class="hero-scroll" href="#intro" aria-label="Nach unten scrollen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 8 6 6 6-6"/></svg></a>
     </section>
@@ -141,7 +141,7 @@
             <li><strong>Einzelstücke</strong><span>Jedes Stück ist nur einmal vorhanden</span></li>
             <li><strong>Planung &amp; Montage</strong><span>Aus einer Hand, auf Wunsch mit Aufmass vor Ort</span></li>
           </ul>
-          <a class="button" href="#katalog">Alle Stücke ansehen</a>
+          <a class="button" href="#toolbar">Alle Stücke ansehen</a>
         </div>
       </div>
     </section>
@@ -153,13 +153,16 @@
     <section class="rooms"><div class="container"><div class="room-grid" id="room-grid"></div></div></section>
 
     <section class="catalog" id="katalog" aria-labelledby="catalog-title">
-      <div class="band band-tight"><div class="container"><h2 id="catalog-title">Alle Einzelstücke</h2><p class="band-lead">Suchen, filtern, merken. Mit dem Herz sammeln Sie Stücke für Ihre Anfrage oder Ihren Besuch.</p><div class="notice"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 10.5v6M12 7.2v.1"/></svg><p><strong>Gut zu wissen.</strong> Alle Preise verstehen sich exkl. MwSt, gleich wie im Crea-Glass Shop. Jedes Stück gibt es nur einmal. Die Abholung in Unterseen ist kostenlos. Fragen? Rufen Sie uns an: <a href="tel:+41338212080">+41 33 821 20 80</a>.</p></div></div></div>
+      <div class="band band-tight"><div class="container"><h2 id="catalog-title">Alle Einzelstücke</h2><p class="band-lead">Suchen, filtern, merken. Mit dem Herz sammeln Sie Stücke für Ihre Anfrage oder Ihren Besuch.</p></div></div>
       <div class="toolbar" id="toolbar">
         <div class="container toolbar-row">
           <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input id="search" type="search" placeholder="Suchen: z. B. Lavabo, Spiegel oder LA 49" autocomplete="off" aria-label="Katalog durchsuchen"></label>
+          <button type="button" class="filter-toggle" id="filter-toggle" aria-expanded="false" aria-controls="filter-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filter</button>
+          <div class="filter-panel" id="filter-panel">
           <label class="select"><span>Preis</span><select id="price-max"><option value="">Alle Preise</option><option value="300">bis CHF 300</option><option value="1000">bis CHF 1'000</option><option value="3000">bis CHF 3'000</option></select></label>
           <label class="select"><span>Sortieren</span><select id="sort"><option value="featured">Empfohlen</option><option value="savings">Grösster Preisvorteil</option><option value="price-asc">Preis aufsteigend</option><option value="price-desc">Preis absteigend</option><option value="code">Artikelcode</option></select></label>
           <label class="select"><span>Status</span><select id="availability"><option value="available">Verfügbar</option><option value="all">Alle inkl. verkauft</option><option value="sold">Verkauft</option></select></label>
+          </div>
         </div>
         <div class="container"><div class="chips" id="category-list" aria-label="Produktkategorien"></div></div>
       </div>
@@ -170,6 +173,7 @@
         <div class="product-grid" id="product-grid"></div>
         <div class="empty-state" id="empty-state" hidden><h3>Kein Stück gefunden.</h3><p>Versuchen Sie einen anderen Begriff oder setzen Sie die Filter zurück.</p><button id="empty-reset" class="button" type="button">Alle Stücke anzeigen</button></div>
         <div class="more-wrap"><button class="button button-outline" id="load-more" type="button" hidden>Weitere Stücke anzeigen</button></div>
+        <p class="catalog-note">Alle Preise exkl. MwSt, gleich wie im Crea-Glass Shop. Jedes Stück gibt es nur einmal. Abholung in Unterseen kostenlos. Fragen? <a href="tel:+41338212080">+41 33 821 20 80</a></p>
         <section class="recent" id="recent-section" hidden><h3>Zuletzt angesehen</h3><div class="recent-rail" id="recent-rail"></div></section>
       </div>
     </section>
